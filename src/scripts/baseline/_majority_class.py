@@ -3,15 +3,20 @@ import numpy as np
 from tensorboard import summary
 
 class MajorityClass():
-  def __init__(self, Y):
+  def __init__(self):
     """the majority class classifier"""
-    self.Y = Y
-    return
+    self._majority = None
+    self._probs = None
 
-  def majority(self, Y):
-    #Y = matrix[-1]                                       # Use this if Y is in a matrix 
-    identifier, counts = np.unique(np.array(Y), return_counts=True) # Counting the occurances of 0 and 1
-    count_sent = dict(zip(identifier, counts))            # Zip the counts into a dictionary
-    find_majority = max(count_sent, key=count_sent.get)   # Find the majority count from the dict
-    print(find_majority)
-    return 
+  def fit(self, X, y):
+    identifier, counts = np.unique(np.array(y), return_counts=True) # Counting the occurances of 0 and 1
+    self._probs = counts/len(y)
+    self._majority = identifier[np.argmax(counts)]
+
+  def predict(self, X):
+    return np.empty(len(X)).fill(self._majority)
+
+  def predict_probability(self, X):
+    return np.array([self._probs for _ in range(len(X))])
+
+
