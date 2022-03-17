@@ -3,8 +3,9 @@ import os
 import sys
 import gzip
 import json
+import math
 
-def load_data(split='dev'):
+def load_data(split='dev', subsample=math.inf):
   """
   Loading specified raw data split as a list of dictionaries.
   Each dictionary represents a single review.
@@ -15,8 +16,11 @@ def load_data(split='dev'):
     split = 'test_masked'
 
   data = []
-  for line in gzip.open(f'data/classification/music_reviews_{split}.json.gz'):
+  for i, line in enumerate(gzip.open(f'data/classification/music_reviews_{split}.json.gz')):
     review_data = json.loads(line)
     data.append(review_data)
+    
+    if i >= subsample:
+      break
 
   return data
