@@ -1,10 +1,7 @@
 # scripts init
 
-from loader import load_data 
-from preprocess import preprocess
-from baseline import MajorityClassSentimentClassifier, LogisticRegressionSentimentClassifier, RNNSentimentClassifier
-
-from evaluate import evaluate
+from .loader import load_data 
+from .preprocess import preprocess
 
 __all__ = [
     'load_data',
@@ -14,4 +11,3 @@ __all__ = [
     'RNNSeentimentClassifier'
     'evaluate'
   ]
-
