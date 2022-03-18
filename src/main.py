@@ -1,11 +1,16 @@
-# main.py
-from scripts import load_data
-from scripts.baseline import MajorityClass, LogisticRegression, SOTA
+from scripts.feature_ext import get_training_data
+from scripts.evaluation import evaluate_baseline
+import warnings
+warnings.filterwarnings('ignore')
 
 def main():
-  train_data = load_data(split='train')
-  dev_data = load_data(split='dev')
-  test_data = load_data(split='test')
+
+  print("-------------- Loading training data")
+  X_train, y_train = get_training_data() # train + dev
+  print()
+
+  print("-------------- (Training) and evaluating models")
+  models = evaluate_baseline({"X_train": X_train, "y_train": y_train})
 
 if __name__ == "__main__":
   main()
