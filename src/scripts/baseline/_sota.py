@@ -1,5 +1,4 @@
 # _sota.py
-from audioop import findmax
 import pandas as pd
 import math
 import gzip
