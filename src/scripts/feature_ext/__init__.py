@@ -1,8 +1,9 @@
-from .preprocess import get_training_data, get_label_encoding, label_encode
+from .preprocess import get_training_data, label_encode, count_vectorizer, get_test_data
 
 __all__ = [
     "get_training_data",
-    "get_label_encoding",
-    "label_encode"
+    "label_encode",
+    'count_vectorizer',
+    'get_test_data'
 ]
 

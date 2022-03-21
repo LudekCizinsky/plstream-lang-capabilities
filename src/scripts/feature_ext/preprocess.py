@@ -7,7 +7,39 @@ from .loader import load_data
 import nltk
 nltk.download('punkt')
 
-# -------------------------- Main functions
+# -------------------------- Public functions
+def get_test_data(label2idx):
+  """Load in memory testing data.
+  
+  For efficiency, we load training data
+  separately from test data to not waste RAM.
+  
+  Parameters
+  ----------
+  label2idx : dict
+    Mapping from label to id.
+
+  Returns
+  -------
+  X : list
+    2D list where each item represents tokenized review, each token is a string.
+
+  y : list
+    1D list where each item indicates sentiment label which is a string.
+  """
+  
+  raw = [
+      ('test', load_data(split='test')), 
+  ]
+
+  X = list()
+  
+  for _, d in raw:
+    text, _ = _extract(d)
+    X.extend(text) 
+
+  return X
+
 
 def get_training_data():
   """Load in memory training data.
@@ -17,11 +49,14 @@ def get_training_data():
 
   Returns
   -------
-  X_train : list
+  X : list
     2D list where each item represents tokenized review, each token is a string.
 
-  y_train : list
+  y : list
     1D list where each item indicates sentiment label which is a string.
+
+  label2idx : dict
+    Mapping from label to id.
   """
   
   raw = [
@@ -31,17 +66,87 @@ def get_training_data():
 
   X, y = list(), list() 
   
+  label2idx = None
   for _, d in raw:
-    text, sentiment = extract(d)
-    text = tokenise(text)
+    text, sentiment = _extract(d)
+    sentiment, label2idx  = label_encode(sentiment, label2idx=label2idx)
     X.extend(text)
     y.extend(sentiment)
 
-  return X, y
+  return X, y, label2idx
 
-# -------------------------- Utility functions
+def label_encode(y, label2idx=None):
 
-def extract(data):
+  """Encodes given labels.
+
+  Parameters
+  ----------
+  y : list
+    List with strings representing sentiment of the review.
+
+  label2idx : dict
+    Mapping of a label to id. If provided returns the same dict.
+    Should be provided only for labels from dev or test data.
+
+  Returns
+  -------
+  y_encoded : list
+    List with ids corresponding to labels.
+ 
+  label2idx : dict
+    Mapping of a label to id. If provided returns the same dict.
+  """
+
+  if label2idx is None:
+    label2idx, idx2label = _get_label_encoding(y)
+
+  y_encoded = _label_encode(y, label2idx)
+
+  return y_encoded, label2idx
+
+
+def count_vectorizer(X, word2idx=None, binary=True):
+  """Create a bag of words vector.
+
+  Parameters
+  ----------
+  X : Iterable
+    Nested iterable where each inner item represents tokenised review  and
+    tokens are UNencoded, i.e., strings.
+    
+
+  word2idx : dict
+    Token to int. Should be provided only for dev or test data.
+
+  binary : bool
+    If true, then j-position of the i-th vector
+    indicates whether the given token is present
+    or not. Otherwise, counts are provided of the
+    given token.
+
+  Returns
+  -------
+  res : N-dim array
+    N x |V| array where N is number of reviews and |V|
+    is size of the vocabulary.
+
+  word2idx: dict
+    Mapping from word to id.
+  """
+
+
+  if word2idx is None:
+    word2idx, idx2word = _get_token_encoding(X)
+
+  X_encoded = _token_encode(X, word2idx)
+
+  bow = _count_vectorizer(X_encoded, word2idx, binary)
+  
+  return bow, word2idx
+
+# -------------------------- Private functions
+
+def _extract(data):
   """Function to extract relevant features from the reviews.
 
   Parameters
@@ -67,7 +172,7 @@ def extract(data):
 
   return text, sentiment
 
-def tokenise(X):
+def _tokenise(X):
   """Tokenise reviews using nltk.
 
   Parameters
@@ -91,7 +196,7 @@ def tokenise(X):
     tokenised.append(word_tokenize(document))
   return tokenised
 
-def get_token_encoding(X_train):
+def _get_token_encoding(X_train):
   """Map tokens to idx and vice versa.
 
   Parameters
@@ -123,7 +228,7 @@ def get_token_encoding(X_train):
         idx += 1
   return word2idx, idx2word
 
-def token_encode(X, word2idx):
+def _token_encode(X, word2idx):
   """Map tokens to corresponding id.
   
   Parameters
@@ -155,7 +260,7 @@ def token_encode(X, word2idx):
     res.append(doc)
   return res
 
-def get_label_encoding(y_train):
+def _get_label_encoding(y_train):
   """Map string labels to ids.
   
   Parameters
@@ -177,7 +282,7 @@ def get_label_encoding(y_train):
 
   return label2idx, idx2label
 
-def label_encode(y, label2idx):
+def _label_encode(y, label2idx):
   """Map labels to ids.
   
   y : list
@@ -194,13 +299,13 @@ def label_encode(y, label2idx):
   res = [label2idx[label] for label in y]
   return res
 
-def count_vectorizer(X, word2idx, binary=True):
+def _count_vectorizer(X, word2idx, binary=True):
   """Create a bag of words vector.
 
   Parameters
   ----------
-  X : list
-    Nested list where each items is a tokenised review and each
+  X : Iterable
+    Nested iterable where each items is a tokenised review and each
     token is represent by an id.
 
   word2idx : dict

@@ -42,6 +42,21 @@ Then, run the following command from the root of the cloned directory to install
 pip install -r requirements.txt
 ```
 
+### Run the pipeline
+#### macOS
+Start by allowing execution of the `shell` script:
+
+```
+chmod +x src/run.all
+```
+
+Then simply execute the shell script as follows:
+
+```
+cd src/
+./run.all
+```
+
 ## Contributors
 
 <table>

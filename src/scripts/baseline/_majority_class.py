@@ -1,22 +1,33 @@
 import numpy as np
+from sklearn.dummy import DummyClassifier
+from sklearn.model_selection import GridSearchCV
 
+# -------------------------- Public
 
 class MajorityClass:
 
-  def __init__(self): 
-    self._majority = None
-    self._probs = None
-
+  def __init__(self, metrics, cv):
+    self.metrics = metrics
+    self.cv = cv
+    self.model = None
+ 
   def fit(self, X, y):
-    identifier, counts = np.unique(np.array(y), return_counts=True)
-    self._probs = counts/len(y)
-    self._majority = identifier[np.argmax(counts)]
+    
+    parameters = { 
+        "strategy": ["prior"]
+    }
 
-  def predict(self, X):
-    yhat = np.empty(len(X))
-    yhat.fill(self._majority)
-    return yhat
-
-  def predict_probability(self, X):
-    return np.array([self._probs for _ in range(len(X))])
+    self.model = GridSearchCV(
+        DummyClassifier(),
+        parameters,
+        scoring=self.metrics,
+        refit='f1',
+        cv=self.cv,
+        n_jobs=-1,
+        verbose=3)
+ 
+    self.model.fit(X, y)
+  
+  def predict(X):
+    return self.model.predict(X)
 
