@@ -24,21 +24,16 @@ def get_test_data(label2idx):
   X : list
     2D list where each item represents tokenized review, each token is a string.
 
-  y : list
-    1D list where each item indicates sentiment label which is a string.
+  raw : list
+    1D list where each item is a dictionary representing meta info about the
+    review instance.
   """
   
-  raw = [
-      ('test', load_data(split='test')), 
-  ]
-
-  X = list()
   
-  for _, d in raw:
-    text, _ = _extract(d)
-    X.extend(text) 
+  raw = load_data(split='test')
+  X, _ = _extract(raw) 
 
-  return X
+  return X, raw
 
 
 def get_training_data():

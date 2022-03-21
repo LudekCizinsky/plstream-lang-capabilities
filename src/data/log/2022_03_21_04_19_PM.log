@@ -1,0 +1,20 @@
+-------------- Loading modules
+Done!
+
+-------------- Loading training data
+Done!
+
+-------------- (Training) and evaluating models
+> Majority Class classifier (cross validated scores)
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+>> F1 score: 0.7533079836888023
+>> Running time: 0:00:01.546881
+
+Done!
+
+-------------- Loading test data
+[CV 1/5] END strategy=prior; accuracy: (test=0.604) f1: (test=0.753) total time=   0.1s
+[CV 4/5] END strategy=prior; accuracy: (test=0.604) f1: (test=0.753) total time=   0.1s
+[CV 5/5] END strategy=prior; accuracy: (test=0.604) f1: (test=0.753) total time=   0.1s
+[CV 2/5] END strategy=prior; accuracy: (test=0.604) f1: (test=0.753) total time=   0.1s
+[CV 3/5] END strategy=prior; accuracy: (test=0.604) f1: (test=0.753) total time=   0.1s
