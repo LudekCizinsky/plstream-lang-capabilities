@@ -1,0 +1,51 @@
+-------------- Loading modules
+Done!
+
+-------------- Loading training data
+Done!
+
+-------------- (Training) and evaluating models
+> Majority Class classifier (cross validated scores)
+Fitting 5 folds for each of 1 candidates, totalling 5 fits
+>> F1 score: 0.7533079836888023
+>> Running time: 0:00:01.592234
+
+> Logistic Regression classifier (cross validated scores)
+Fitting 5 folds for each of 4 candidates, totalling 20 fits
+>> F1 score: 0.9425236537986142
+>> Running time: 0:01:17.988581
+
+Done!
+
+-------------- Loading test data
+Done!
+
+-------------- Choosing best model and making predictions
+Predictions saved to: data/predictions/2022-03-21-13:46.yhat
+Done!
+
+[CV 1/5] END LR__C=0.3, LR__max_iter=500; accuracy: (test=0.926) f1: (test=0.939) total time=  29.8s
+[CV 3/5] END LR__C=0.05, LR__max_iter=500; accuracy: (test=0.931) f1: (test=0.943) total time=  19.8s
+[CV 4/5] END strategy=prior; accuracy: (test=0.604) f1: (test=0.753) total time=   0.1s
+[CV 3/5] END LR__C=0.3, LR__max_iter=500; accuracy: (test=0.934) f1: (test=0.946) total time=  30.1s
+[CV 4/5] END LR__C=0.05, LR__max_iter=500; accuracy: (test=0.932) f1: (test=0.944) total time=  18.2s
+[CV 4/5] END LR__C=0.05, LR__max_iter=1000; accuracy: (test=0.932) f1: (test=0.944) total time=  10.0s
+[CV 1/5] END strategy=prior; accuracy: (test=0.604) f1: (test=0.753) total time=   0.1s
+[CV 4/5] END LR__C=0.3, LR__max_iter=500; accuracy: (test=0.931) f1: (test=0.944) total time=  27.6s
+[CV 4/5] END LR__C=0.3, LR__max_iter=1000; accuracy: (test=0.931) f1: (test=0.944) total time=  24.2s
+[CV 2/5] END strategy=prior; accuracy: (test=0.604) f1: (test=0.753) total time=   0.1s
+[CV 1/5] END LR__C=0.3, LR__max_iter=1000; accuracy: (test=0.926) f1: (test=0.939) total time=  29.9s
+[CV 5/5] END LR__C=0.05, LR__max_iter=500; accuracy: (test=0.934) f1: (test=0.946) total time=  19.4s
+[CV 5/5] END LR__C=0.05, LR__max_iter=1000; accuracy: (test=0.934) f1: (test=0.946) total time=  10.1s
+[CV 3/5] END strategy=prior; accuracy: (test=0.604) f1: (test=0.753) total time=   0.1s
+[CV 5/5] END LR__C=0.3, LR__max_iter=500; accuracy: (test=0.934) f1: (test=0.946) total time=  28.0s
+[CV 1/5] END LR__C=0.05, LR__max_iter=500; accuracy: (test=0.923) f1: (test=0.937) total time=  18.4s
+[CV 2/5] END LR__C=0.05, LR__max_iter=1000; accuracy: (test=0.922) f1: (test=0.936) total time=  10.8s
+[CV 3/5] END LR__C=0.3, LR__max_iter=1000; accuracy: (test=0.934) f1: (test=0.946) total time=  30.2s
+[CV 1/5] END LR__C=0.05, LR__max_iter=1000; accuracy: (test=0.923) f1: (test=0.937) total time=  19.0s
+[CV 5/5] END strategy=prior; accuracy: (test=0.604) f1: (test=0.753) total time=   0.1s
+[CV 2/5] END LR__C=0.3, LR__max_iter=500; accuracy: (test=0.926) f1: (test=0.939) total time=  28.0s
+[CV 5/5] END LR__C=0.3, LR__max_iter=1000; accuracy: (test=0.934) f1: (test=0.946) total time=  24.4s
+[CV 2/5] END LR__C=0.3, LR__max_iter=1000; accuracy: (test=0.926) f1: (test=0.939) total time=  28.4s
+[CV 2/5] END LR__C=0.05, LR__max_iter=500; accuracy: (test=0.922) f1: (test=0.936) total time=  17.6s
+[CV 3/5] END LR__C=0.05, LR__max_iter=1000; accuracy: (test=0.931) f1: (test=0.943) total time=  11.4s
