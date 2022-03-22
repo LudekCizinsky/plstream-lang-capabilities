@@ -4,20 +4,20 @@ Task chosen: Binary Classification of Movie Reviews
 
 Pipeline:
 - [x] data loading 
-- [ ] preprocessing data (Mika)
-  - [ ] extract relevant information from json fields
-  - [ ] tokenise (nltk.word_tokenize)
-  - [ ] bow (sklearn.OneHotEncoder)
+- [x] preprocessing data (Mika)
+  - [x] extract relevant information from json fields
+  - [x] tokenise (nltk.word_tokenize)
+  - [x] bow (sklearn.OneHotEncoder)
 
-- [ ] Baseline Models (24.03)
-  - [ ] Baseline 1: Majority Class Classifier (Iben)
-  - [ ] Baseline 2: Simple ML Model + BOW (Ludek)
+- [x] Baseline Models (24.03)
+  - [x] Baseline 1: Majority Class Classifier (Iben)
+  - [x] Baseline 2: Simple ML Model + BOW (Ludek)
   - [ ] Baseline 2: Simple ML Model + word2vec embeddings 
         (Ludek)
-  - [ ] Baseline 3: SotA (Lukas)
+  - [x] Baseline 3: SotA (Lukas)
 
 Project flow
-- [ ] Put the baseline prediction on CodaLab(23.03.)
+- [x] Put the baseline prediction on CodaLab(23.03.)
 - [ ] Put the description of the baseline on Learnit (.txt file with 200 words) (23.03.)
 - [ ] Hand in difficult cases (30.03.)
 - [ ] Predict difficult cases using our baseline (06.04.)
