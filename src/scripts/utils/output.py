@@ -19,6 +19,7 @@ def finished(task, time=None):
     print(st, task, time)
   else:
     print(st, task)
+  print()
 
 def error(task):
   st = colored("Error:", "grey", "on_red", attrs=[])
