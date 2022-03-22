@@ -2,10 +2,10 @@
 from tqdm import tqdm
 from collections import defaultdict
 import numpy as np
+from scipy.sparse import coo_matrix
 from nltk.tokenize import word_tokenize
-from .loader import load_data
-import nltk
-nltk.download('punkt')
+# import nltk
+# nltk.download('punkt')
 
 # -------------------------- Public functions
 def get_test_data(label2idx):
@@ -160,9 +160,9 @@ def _extract(data):
 
   N = len(data)
   text, sentiment = [None]*N, [None]*N
-  for i in range(N):
+  for i in tqdm(range(N)):
     review = defaultdict(str, data[i])
-    text[i] = f"{review['summary']} {review['reviewText']}"
+    text[i] = word_tokenize(f"{review['summary']} {review['reviewText']}")
     sentiment[i] = review['sentiment']
 
   return text, sentiment
@@ -187,7 +187,7 @@ def _tokenise(X):
   """
 
   tokenised = []
-  for document in tqdm(X):
+  for document in X:
     tokenised.append(word_tokenize(document))
   return tokenised
 
@@ -294,7 +294,7 @@ def _label_encode(y, label2idx):
   res = [label2idx[label] for label in y]
   return res
 
-def _count_vectorizer(X, word2idx, binary=True):
+def _one_hot_encode(X, word2idx, binary=True):
   """Create a bag of words vector.
 
   Parameters
@@ -321,13 +321,18 @@ def _count_vectorizer(X, word2idx, binary=True):
 
   N = len(X)
   V = len(word2idx)
-  res = np.zeros((N, V))
-  for i in tqdm(range(N)):
-    tokens_idx, counts = np.unique(X[i], returns_count=True)
-    for j, token_id in enumerate(tokens): 
-      if binary:
-        res[i][token_id] = 1
-      else:
-        res[i][token_id] = counts[j]
-  return res
+  freq = defaultdict(int) 
 
+  for i in tqdm(range(N)):
+    for token_id in X[i]: 
+      if binary:
+        freq[(i, token_id)] = 1
+      else:
+        freq[(i, token_id)] = 1
+
+  row, col = zip(*freq.keys())
+  data = [c for c in freq.values()]
+
+  one_hot = coo_matrix((data, (row, col)))
+
+  return one_hot
