@@ -1,17 +1,17 @@
 #/!bin/bash
 
-# Allow execution of the main script
+# allow execution of the main script
 chmod +x main.py
 
-# Initial question
+# initial question
 while true; do
-  read -p "=============== Hi there, do you want to run the whole pipeline? [y/n] " ans
+  read -p "=== Run project pipe? [y/n]" ans
   if [[ $ans  =~ "y" ]]
   then
     filename=data/log/"$(date +"%Y_%m_%d_%I_%M_%p").log"
-    echo ">>> Wait for ~2 mins, pipeline is being executed..."
+    echo ">>> executing..."
     python3 main.py > $filename
-    echo "=============== Pipeline finished successfully, see below the summary"
+    echo "=== execution finished successfully"
     cat $filename
     exit 0
   elif [[ $ans  =~ "n" ]]
@@ -19,4 +19,3 @@ while true; do
     exit 0
   fi  
 done
-
