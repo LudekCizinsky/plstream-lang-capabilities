@@ -18,7 +18,7 @@ Pipeline:
 
 Project flow
 - [x] Put the baseline prediction on CodaLab(23.03.)
-- [ ] Put the description of the baseline on Learnit (.txt file with 200 words) (23.03.)
+- [x] Put the description of the baseline on Learnit (.txt file with 200 words) (23.03.)
 - [ ] Hand in difficult cases (30.03.)
 - [ ] Predict difficult cases using our baseline (06.04.)
 - [ ] Presentation of proposals (05.04 - 07.04.)
