@@ -333,6 +333,6 @@ def _one_hot_encode(X, word2idx, binary=True):
   row, col = zip(*freq.keys())
   data = [c for c in freq.values()]
 
-  one_hot = coo_matrix((data, (row, col)))
+  one_hot = coo_matrix((data, (row, col)), shape=(N, V))
 
   return one_hot

@@ -20,6 +20,8 @@ from scripts.feature_ext import (
     )
 
 def main():
+  total = timer() # global timer
+
   # stage: raw
   raw_train = get_data(stage='raw', split='train')
   raw_dev = get_data(stage='raw', split='dev')
@@ -141,6 +143,8 @@ def main():
         outfile.write(f"{y[i]}\n")
   print('Saved One-Hot Encoded files to data/processed/one_hot_encoded')
   finished('One-Hot Encoding Reviews', timer()-start)
+
+  finished('Entire Preprocessing Pipeline', timer()-total)
 
 if __name__ == "__main__":
   main()
