@@ -1,15 +1,16 @@
 from termcolor import colored
-from time import sleep
+from timeit import default_timer as timer
 
-def starting(task):
-  st = colored("Starting:", "red", attrs=["bold"])
-  task = colored(task, "white", attrs=[])
-  print(st, task)
+def output(task):
+  task = colored(task, "blue", attrs=["bold"])
+  print(task + '\n')
 
-def working_on(task):
+def working_on(task, time=True):
   st = colored("Working:", "yellow", attrs=["bold", "blink"])
   task = colored(task, "white", attrs=[])
   print(st, task)
+  if time:
+    return timer()
 
 def finished(task, time=None):
   st = colored("Finished:", "green", attrs=["bold"])

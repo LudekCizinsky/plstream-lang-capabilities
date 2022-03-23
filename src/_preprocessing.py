@@ -9,7 +9,7 @@ from tqdm import tqdm
 from timeit import default_timer as timer
 
 from scripts.utils import get_data
-from scripts.utils import starting, working_on, finished
+from scripts.utils import output, working_on, finished
 from scripts.feature_ext import (
     _extract, 
     _get_token_encoding, 
