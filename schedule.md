@@ -22,7 +22,7 @@ Project flow
 - [x] 2. Put the description of the baseline on Learnit (.txt file with 200 words) (23.03.)
 - [ ] 3. Hand in difficult cases (30.03.)
 - [ ] 4. Predict difficult cases using our baseline (06.04.)
-- [ ] Presentation of proposals (05.04 - 07.04.)
+- [ ] 5. Presentation of proposals (05.04 - 07.04.)
 - [ ] 5. Upload our proposal on LearnIT (21.04.)
 - [ ] 6. Upload draft (not mandatory) (19.05.)
 - [ ] 7. Final project upload (27.05.)
