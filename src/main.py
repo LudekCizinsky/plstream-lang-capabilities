@@ -19,10 +19,6 @@ def main():
   # get extracted data (extracted and tokenised)
   X_train, y_train, X_dev, y_dev = get_data(stage='extracted', split=['train', 'dev']) 
 
-  # untokenise reviews (since sklearn pipeline does that automatically
-  X_train = [' '.join(review) for review in X_train]
-  X_dev = [' '.join(review) for review in X_dev]
-
   # encode labels to integer format
   word2idx, label2idx = get_encodings(which=['word2idx', 'label2idx'])
   y_train = [label2idx[label] for label in y_train]
