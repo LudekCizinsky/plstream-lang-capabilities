@@ -4,6 +4,7 @@ import sys
 import gzip
 import json
 import math
+import pickle
 import numpy as np
 from scipy.sparse import load_npz
 
@@ -16,6 +17,25 @@ DATA = {
     'one_hot_encoded': 'data/processed/one_hot_encoded',
     'encodings': 'data/encodings',
     }
+
+def load_model(filepath, most_recent):
+  """Load serialised python object into memory from pickle
+  format
+
+  Parameters
+  ----------
+  filepath : str
+    Complete file path specifying the location of the saved
+    model including the model name relative to the src
+    folder
+
+  Returns
+  -------
+  model : Object
+    Returns trained, saved model
+  """
+  with open(filepath, "rb") as f:
+    return pickle.load(f)
 
 def get_data(
     stage='int_encoded', 
