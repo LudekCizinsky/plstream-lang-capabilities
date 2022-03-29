@@ -133,6 +133,7 @@ def main():
       'mft2': (X_mft2, y_mft2),
       'typos': (X_typo, y_typo),
        'truth_at_the_end': (X_prank, y_prank),
+      'remove_stars': (X_stars, y_stars)
       }
     
     difficult_cases = []
