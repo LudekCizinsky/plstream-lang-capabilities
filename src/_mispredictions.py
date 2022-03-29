@@ -1,4 +1,4 @@
-# _difficult_cases.py
+# _mispredictions.py
 # script to extract the analyse the wrong predictions of the
 # baseline model
 from scripts.utils import output, working_on, finished
@@ -21,8 +21,6 @@ def main():
 
   # loading textual dev reviews
   dev_reviews, _ = get_data(stage='extracted', split='dev')
-  print(dev_reviews[0])
-  return
 
   # loading training and dev one hot encoded
   X_train, y_train, X_dev, y_dev = get_data(stage='one_hot_encoded', split=['train', 'dev'])
@@ -48,20 +46,19 @@ def main():
   print(f">> False Positives :\n{confusion_matrix(y_dev, preds)[0, 1]}") 
   print(f">> False Negatives :\n{confusion_matrix(y_dev, preds)[1, 0]}") 
   finished('Predicting on Validation Split', timer()-start)
-  return
 
   # saving difficult cases
-  start = working_on('Finding Difficult Cases')
-  path = 'data/difficult_cases'
+  start = working_on('Finding Mispredictions')
+  path = 'data/mispredictions'
   os.makedirs(path) if not os.path.exists(path) else None
-  with open(f"{path}/difficult_cases.txt", "w") as outfile:
+  with open(f"{path}/mispredictions.txt", "w") as outfile:
     for i in range(len(y_dev)):
       if preds[i] != y_dev[i]:
         review = dev_reviews[i]
         pred = 'positive' if int(preds[i]) else 'negative'
         true = 'positive' if int(y_dev[i]) else 'negative'
         outfile.write(f"{review} - {pred} ({true})\n")
-  finished('Finding Difficult Cases', timer()-start)
+  finished('Finding Mispredictions', timer()-start)
 
   finished('Entire Difficult Cases Pipeline', timer()-total)
 
