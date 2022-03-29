@@ -102,7 +102,9 @@ def remove_stars(n):
   pass
 
 def prank_test():
-  print()
+  s = ""
+  pass
+  return 
 
 def main():
   parser = argparse.ArgumentParser()
