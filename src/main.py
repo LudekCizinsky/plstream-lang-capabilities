@@ -52,7 +52,7 @@ def main():
   start = working_on('Saving Test Predictions in Original Format')
   for r, y in zip(raw, preds):
     r["sentiment"] = y    
-  file_name = datetime.datetime.now().strftime('%Y-%m-%d-%H:%M')
+  file_name = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')
   path = f"data/predictions/{file_name}.yhat"
   with open(path, "w") as f:
     tmp = [json.dumps(r) for r in raw]
