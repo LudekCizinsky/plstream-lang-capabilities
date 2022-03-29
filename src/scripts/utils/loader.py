@@ -4,6 +4,7 @@ import sys
 import gzip
 import json
 import math
+import pickle
 import numpy as np
 from scipy.sparse import load_npz
 
@@ -11,10 +12,30 @@ from scipy.sparse import load_npz
 DATA = {
     'raw': 'data/raw',
     'extracted': 'data/processed/extracted',
+    'tokenised': 'data/processed/tokenised',
     'int_encoded': 'data/processed/int_encoded',
     'one_hot_encoded': 'data/processed/one_hot_encoded',
     'encodings': 'data/encodings',
     }
+
+def load_model(filepath):
+  """Load serialised python object into memory from pickle
+  format
+
+  Parameters
+  ----------
+  filepath : str
+    Complete file path specifying the location of the saved
+    model including the model name relative to the src
+    folder
+
+  Returns
+  -------
+  model : Object
+    Returns trained, saved model
+  """
+  with open(filepath, "rb") as f:
+    return pickle.load(f)
 
 def get_data(
     stage='int_encoded', 
@@ -29,16 +50,17 @@ def get_data(
     1. Raw 
        Raw Review Data - received in JSON format
     2. Extracted 
-       Extracted Review Summary and Text and saved the
-       tokenised versions. Can be loaded into a list of list
-       of strings.
+       Extracted Review Summary and Text. Can be loaded into a 
+       list of strings of strings.
        The gold standard sentiment analysis is stored as
        a list of strings.
-    3. Int-Encoded
+    3. Tokenised
+       Tokenised Reviews into list of list of strings 
+    4. Int-Encoded
        An integer-encoding mapping from the extracted training
        samples that was used to integer encode both the
        list of movie reviews and the sentiments. 
-    4. One-Hot Encoded
+    5. One-Hot Encoded
        Converted the integer encoded movie reviews (each
        review is a sequence of tokens in the length of the
        review) into one-hot encoded vectors in the length of
@@ -87,7 +109,7 @@ def get_data(
 
   # check input
   assert type(stage) == str
-  if stage not in ['raw', 'extracted', 'int_encoded', 'one_hot_encoded']:
+  if stage not in ['raw', 'extracted', 'tokenised', 'int_encoded', 'one_hot_encoded']:
     raise ValueError(f"{stage} is an invalid stage")
 
   assert type(split) in (list, str) 
@@ -115,9 +137,19 @@ def get_data(
       res[i] = raw
 
     return res if len(res) > 1 else res[0]
-  
+
   if stage == 'extracted':
     path = DATA['extracted']
+    for i, s in enumerate(split):
+      X = [line.strip() for line in open(f"{path}/X_{s}.txt")]
+      y = [line.strip() for line in open(f"{path}/y_{s}.txt")]
+      res[2*i] = X
+      res[2*i+1] = y 
+
+    return res if len(res) > 1 else res[0]
+  
+  if stage == 'tokenised':
+    path = DATA['tokenised']
     for i, s in enumerate(split):
       X = _load_data(f"{path}/X_{s}.tsv")
       y = _load_data(f"{path}/y_{s}.tsv", one_dim=True)

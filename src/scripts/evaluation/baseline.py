@@ -4,6 +4,7 @@ from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import StratifiedKFold
 from scripts.baseline import MajorityClass, LogisticRegression
 from scripts.feature_ext import label_encode
+from scripts.utils import save_model
 import datetime
 import numpy as np
 
@@ -106,6 +107,9 @@ def _eval_basic_models(data, METRICS):
     tmp["model"] = md
     tmp["score"] = md.best_score_
     print(f'>> F1 score: {tmp["score"]}')
+
+    # save model
+    save_model(md, 'data/models', name.lower().replace(' ', '_') + '.pkl', timestamp=False)
 
     end = datetime.datetime.now()
     diff = end - start

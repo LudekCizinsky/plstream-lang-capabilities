@@ -162,12 +162,12 @@ def _extract(data):
   text, sentiment = [None]*N, [None]*N
   for i in tqdm(range(N)):
     review = defaultdict(str, data[i])
-    text[i] = word_tokenize(f"{review['summary']} {review['reviewText']}")
+    text[i] = f"{review['summary']} {review['reviewText']}".replace('\n', '')
     sentiment[i] = review['sentiment']
 
   return text, sentiment
 
-def _tokenise(X):
+def _tokenise(data):
   """Tokenise reviews using nltk.
 
   Parameters
@@ -185,10 +185,10 @@ def _tokenise(X):
   To see the details of the tokenisation, please visit
   `nltk docs <https://www.nltk.org/api/nltk.tokenize.html>`_
   """
-
-  tokenised = []
-  for document in X:
-    tokenised.append(word_tokenize(document))
+  N = len(data)
+  tokenised = [None]*N
+  for i in tqdm(range(N)):
+    tokenised[i] = word_tokenize(data[i])
   return tokenised
 
 def _get_token_encoding(X_train):
