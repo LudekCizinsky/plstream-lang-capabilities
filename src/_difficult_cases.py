@@ -145,7 +145,6 @@ def main():
         case['category'] = test_type
         difficult_cases.append(case)
 
-
     start = working_on('Save Difficult Cases')
     path = 'data/difficult_cases'
     os.makedirs(path) if not os.path.exists(path) else None
