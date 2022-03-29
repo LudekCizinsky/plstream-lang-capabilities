@@ -20,6 +20,7 @@ from checklist.test_suite import TestSuite
 from checklist.expect import Expect
 from timeit import default_timer as timer
 from sklearn.metrics import accuracy_score, f1_score, classification_report
+import re
 
 warnings.filterwarnings("ignore")
 
@@ -62,47 +63,24 @@ def typo_test(n):
 
   return typos, sentiment
 
-
-
-def negation_test(n):
-  reviews, sentiments = get_data(stage='extracted', split='train')
-  nlp  = spacy.load('en_core_web_sm')
-  negatives = []
-  reverse_sentiments = []
-  num = 0
-  for review,sentiment in zip(reviews,sentiments):
-    try:
-      if len(review) < 100: #and not re.search(r'[Ss]tars*', review):
-        psentence = list(nlp.pipe([review]))
-        ret = Perturb.perturb(psentence, Perturb.remove_negation)['data'][0][1]
-        while True: 
-          print(review)
-          print(ret)
-          print()
-          ans = input('Correct negation? [y/n] ')
-          if ans == 'y':
-            negatives.append(ret)
-            reverse_sentiments.append('positive' if sentiment == 'negative' else 'negative')
-            num += 1
-            break
-          elif ans == 'n':
-            break
-
-          elif ans == 'exit':
-            return
-        
-        if num > n:
-          break
-    except:
-      pass
-
-  return negatives, reverse_sentiments
-
 def remove_stars(n):
-  x = 5
-  print('Hello world')
-  pass
+  removed_stars = []
+  removed_sentiment = []
+  reviews, sentiments = get_data(stage='extracted', split='train')
+  pattern = '[a-zA-Z]+ [Ss]tars{0,1} ' 
+  num = 0
+  for review, sentiment in zip(reviews,sentiments):
+    if re.match(pattern, review):
+      replaced = re.sub(pattern, '', review)
+      removed_stars.append(replaced)
+      removed_sentiment.append(sentiment)
+      num += 1
+      
+    if num > n-1:
+      break
 
+  return removed_stars,removed_sentiment
+      
 def prank_test():
   s = ""
   pass
@@ -122,7 +100,7 @@ def main():
     X_mft1, y_mft1 = mft1(25)
     X_mft2, y_mft2 = mft2(25)
     X_typo, y_typo = typo_test(25)
-    X_neg, y_neg = negation_test(25)
+    X_stars, y_stars = remove_stars(25)
 
     finished('Generating Difficult Cases', timer() - start)
 
