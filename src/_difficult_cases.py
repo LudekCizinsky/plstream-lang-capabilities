@@ -70,7 +70,7 @@ def remove_stars(n):
   pattern = '[a-zA-Z]+ [Ss]tars{0,1} ' 
   num = 0
   for review, sentiment in zip(reviews,sentiments):
-    if len(reviews) > 80 and re.match(pattern, review):
+    if len(review) > 100 and re.match(pattern, review):
       replaced = re.sub(pattern, '', review)
       removed_stars.append(replaced)
       removed_sentiment.append(sentiment)
@@ -129,11 +129,11 @@ def main():
     finished('Generating Difficult Cases', timer() - start)
 
     TESTS = {
-      'mft1': (X_mft1, y_mft1),
-      'mft2': (X_mft2, y_mft2),
+      'negation (not + pos_adj)': (X_mft1, y_mft1),
+      'hopes vs reality': (X_mft2, y_mft2),
       'typos': (X_typo, y_typo),
-       'truth_at_the_end': (X_prank, y_prank),
-      'remove_stars': (X_stars, y_stars)
+      'irony': (X_prank, y_prank),
+      'remove star rating': (X_stars, y_stars)
       }
     
     difficult_cases = []
@@ -189,7 +189,13 @@ def main():
   print(classification_report(y, preds))
   print(f"F1 Score: {f1_score(y, preds)}")
   
-  tests = ['mft1', 'mft2', 'typos', 'truth_at_the_end', 'remove_stars'] 
+  tests =[ 
+      'negation (not + pos_adj)',
+      'hopes vs reality',
+      'typos',
+      'irony',
+      'remove star rating'
+    ]
   for category in tests:
     mask = categories == category
     pred = model.predict(X[mask])
