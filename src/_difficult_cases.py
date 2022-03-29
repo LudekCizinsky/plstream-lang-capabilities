@@ -99,11 +99,16 @@ def negation_test(n):
   return negatives, reverse_sentiments
 
 
+<<<<<<< HEAD
 def remove_stars(n):
   pass
 
 
 
+=======
+def prank_test():
+  print()
+>>>>>>> 546f6dca606738cb37219601eacdb662249a32cf
 
 def main():
   parser = argparse.ArgumentParser()
