@@ -101,10 +101,33 @@ def negation_test(n):
 def remove_stars(n):
   pass
 
-def prank_test():
-  s = ""
-  pass
-  return 
+def prank_test(n):
+
+  reviews, sentiments = get_data(stage='extracted', split='train')
+
+  pos_prank = ' Did you really believe I do not like it? No way! It was a masterpiece!'
+  neg_prank = ' Now for real, it is actually terrible, and I could not dislike it more.'
+  
+  i = 0
+  pranks = []
+  sentiment = []
+  while i<n:
+    idx = np.random.randint(len(reviews))
+    review = reviews[idx]
+    sent = sentiments[idx]
+    
+    if sent == "negative":
+      pranks.append(review + pos_prank)
+      sentiment.append("positive")
+    elif sent == "positive":
+      pranks.append(review + neg_prank)
+      sentiment.append("negative")
+    else:
+      raise ValueError("Incorrect sentiment.")
+      
+    i += 1
+
+  return pranks, sentiment
 
 def main():
   parser = argparse.ArgumentParser()
@@ -120,7 +143,7 @@ def main():
     X_mft1, y_mft1 = mft1(25)
     X_mft2, y_mft2 = mft2(25)
     X_typo, y_typo = typo_test(25)
-    X_neg, y_neg = negation_test(25)
+    X_prank, y_prank =  prank_test(25)
 
     finished('Generating Difficult Cases', timer() - start)
 
@@ -128,7 +151,7 @@ def main():
       'mft1': (X_mft1, y_mft1),
       'mft2': (X_mft2, y_mft2),
       'typos': (X_typo, y_typo),
-       'negation': (X_neg, y_neg),
+       'truth_at_the_end': (X_prank, y_prank),
       }
     
     difficult_cases = []
