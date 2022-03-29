@@ -96,6 +96,10 @@ def negation_test(n):
 
   return negatives, reverse_sentiments
 
+
+def prank_test():
+  print()
+
 def main():
   parser = argparse.ArgumentParser()
   parser.add_argument('-L','--load', action='store_true', help='load difficult cases otherwise, generate them')
