@@ -99,6 +99,8 @@ def negation_test(n):
   return negatives, reverse_sentiments
 
 def remove_stars(n):
+  x = 5
+  print('Hello world')
   pass
 
 def prank_test(n):
