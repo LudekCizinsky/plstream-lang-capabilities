@@ -18,7 +18,7 @@ DATA = {
     'encodings': 'data/encodings',
     }
 
-def load_model(filepath, most_recent):
+def load_model(filepath):
   """Load serialised python object into memory from pickle
   format
 
