@@ -70,7 +70,7 @@ def remove_stars(n):
   pattern = '[a-zA-Z]+ [Ss]tars{0,1} ' 
   num = 0
   for review, sentiment in zip(reviews,sentiments):
-    if re.match(pattern, review):
+    if len(reviews) > 80 and re.match(pattern, review):
       replaced = re.sub(pattern, '', review)
       removed_stars.append(replaced)
       removed_sentiment.append(sentiment)
@@ -169,9 +169,10 @@ def main():
   # possible) in the different categories
   start = working_on('Evaluating Baseline Performance')
   N = len(difficult_cases)
-  X = [None]*N
-  y = [None]*N
-  categories = [None]*N
+  X = np.empty(N, dtype=object)
+  y = np.empty(N, dtype=object) 
+  categories = np.empty(N,dtype=object)
+
   for i in range(N):
     X[i] = difficult_cases[i]['reviewText']
     y[i] = difficult_cases[i]['sentiment']
@@ -180,12 +181,24 @@ def main():
   model = load_model('data/models/logistic_regression.pkl')
   label2idx = get_encodings(['label2idx'])
 
-  y = [label2idx[label] for label in y]
+  y = np.array([label2idx[label] for label in y])
 
+  
   preds = model.predict(X)
   print(f"Accuracy Score: {accuracy_score(y, preds)}")
   print(classification_report(y, preds))
   print(f"F1 Score: {f1_score(y, preds)}")
+  
+  tests = ['mft1', 'mft2', 'typos', 'truth_at_the_end', 'remove_stars'] 
+  for category in tests:
+    mask = categories == category
+    pred = model.predict(X[mask])
+    print(f"Accuracy Score ({category}): {accuracy_score(y[mask], pred)}")
+  
+    
+
+
+
 
   finished('Evaluating Baseline Performance', timer() - start)
   
