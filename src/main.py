@@ -19,10 +19,6 @@ def main():
   # get extracted data (extracted and tokenised)
   X_train, y_train, X_dev, y_dev = get_data(stage='extracted', split=['train', 'dev']) 
 
-  # untokenise reviews (since sklearn pipeline does that automatically
-  X_train = [' '.join(review) for review in X_train]
-  X_dev = [' '.join(review) for review in X_dev]
-
   # encode labels to integer format
   word2idx, label2idx = get_encodings(which=['word2idx', 'label2idx'])
   y_train = [label2idx[label] for label in y_train]
@@ -56,7 +52,7 @@ def main():
   start = working_on('Saving Test Predictions in Original Format')
   for r, y in zip(raw, preds):
     r["sentiment"] = y    
-  file_name = datetime.datetime.now().strftime('%Y-%m-%d-%H:%M')
+  file_name = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M')
   path = f"data/predictions/{file_name}.yhat"
   with open(path, "w") as f:
     tmp = [json.dumps(r) for r in raw]

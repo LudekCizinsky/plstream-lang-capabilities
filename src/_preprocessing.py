@@ -12,6 +12,7 @@ from scripts.utils import get_data
 from scripts.utils import output, working_on, finished
 from scripts.feature_ext import (
     _extract, 
+    _tokenise,
     _get_token_encoding, 
     _get_label_encoding, 
     _token_encode, 
@@ -29,8 +30,7 @@ def main():
   finished('Loading Raw Data')
 
   # stage: extracted 
-  working_on('Extracting Relevant Features and Labels')
-  start = timer()
+  start = working_on('Extracting Relevant Features and Labels')
 
   reviews_train, sentiment_train = _extract(raw_train)
   reviews_dev, sentiment_dev = _extract(raw_dev)
@@ -46,6 +46,34 @@ def main():
     path = f'data/processed/extracted/'
     os.makedirs(path) if not os.path.exists(path) else None
     for i in range(len(data)):
+      if not i: name = f'X_{split}.txt'
+      else: name = f'y_{split}.txt'
+
+      with open(path+name, 'w') as outfile:
+        N = len(data[i])
+        for j in range(N):
+          outfile.write(f"{data[i][j].strip()}\n")
+
+  print('Saved tokenised files to data/processed/extracted')
+  finished('Extracting Relevant Features and Labels', time=timer()-start)
+
+  # stage: tokenised
+  start = working_on('Tokenising Reviews')
+
+  tokenised_train = _tokenise(reviews_train)
+  tokenised_dev = _tokenise(reviews_dev)
+  tokenised_test = _tokenise(reviews_test)
+
+  tokenised = {
+      'train': (tokenised_train, sentiment_train),
+      'dev': (tokenised_dev, sentiment_dev),
+      'test': (tokenised_test, sentiment_test)
+      }
+
+  for split, data in tqdm(tokenised.items()):
+    path = f'data/processed/tokenised/'
+    os.makedirs(path) if not os.path.exists(path) else None
+    for i in range(len(data)):
       if not i: name = f'X_{split}.tsv'
       else: name = f'y_{split}.tsv'
 
@@ -57,15 +85,12 @@ def main():
           else: 
             out = data[i][j]
           outfile.write(f"{out}\n")
-
-  print('Saved Extracted Files to data/processed/extracted')
-  finished('Extracting Relevant Features and Labels', time=timer()-start)
+  print('Saved Extracted Files to data/processed/tokenised')
+  finished('Tokenising Reviews', timer()-start)
 
   # stage: int-encoded
-
-  working_on('Integer Encoding Reviews and Labels')
-  start = timer()
-  word2idx, idx2word = _get_token_encoding(reviews_train)
+  start = working_on('Integer Encoding Reviews and Labels')
+  word2idx, idx2word = _get_token_encoding(tokenised_train)
   label2idx, idx2label = _get_label_encoding(sentiment_train)
 
   encodings = {
@@ -84,13 +109,13 @@ def main():
   print('Saved mappings to data/encodings')
 
   # integer encode
-  X_train  = _token_encode(reviews_train, word2idx)
+  X_train  = _token_encode(tokenised_train, word2idx)
   y_train = _label_encode(sentiment_train, label2idx)
 
-  X_dev= _token_encode(reviews_dev, word2idx)
+  X_dev= _token_encode(tokenised_dev, word2idx)
   y_dev = _label_encode(sentiment_dev, label2idx)
 
-  X_test = _token_encode(reviews_test, word2idx)
+  X_test = _token_encode(tokenised_test, word2idx)
   y_test = [-1 for _ in range(len(X_test))]
 
   int_encoded = {
