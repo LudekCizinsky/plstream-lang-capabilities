@@ -62,6 +62,8 @@ def typo_test(n):
 
   return typos, sentiment
 
+
+
 def negation_test(n):
   reviews, sentiments = get_data(stage='extracted', split='train')
   nlp  = spacy.load('en_core_web_sm')
@@ -95,6 +97,13 @@ def negation_test(n):
       pass
 
   return negatives, reverse_sentiments
+
+
+def remove_stars(n):
+  pass
+
+
+
 
 def main():
   parser = argparse.ArgumentParser()
