@@ -110,7 +110,7 @@ def get_data(
 
   # check input
   assert type(stage) == str
-  if stage not in ['raw', 'extracted', 'tokenised', 'int_encoded', 'one_hot_encoded', 'difficult']:
+  if stage not in ['raw', 'extracted', 'tokenised', 'int_encoded', 'one_hot_encoded']:
     raise ValueError(f"{stage} is an invalid stage")
 
   assert type(split) in (list, str) 
