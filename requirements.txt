@@ -238,7 +238,7 @@ Shapely==1.7.1
 shtab==1.5.3
 shuffle-graph==1.1.1
 six==1.16.0
-sklearn==0.0
+sklearn==1.0.2
 slack-sdk==3.11.2
 smart-open==5.2.1
 smmap==5.0.0
