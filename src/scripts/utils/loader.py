@@ -16,6 +16,7 @@ DATA = {
     'int_encoded': 'data/processed/int_encoded',
     'one_hot_encoded': 'data/processed/one_hot_encoded',
     'encodings': 'data/encodings',
+    'difficult': 'data/difficult_cases'
     }
 
 def load_model(filepath):
@@ -109,7 +110,7 @@ def get_data(
 
   # check input
   assert type(stage) == str
-  if stage not in ['raw', 'extracted', 'tokenised', 'int_encoded', 'one_hot_encoded']:
+  if stage not in ['raw', 'extracted', 'tokenised', 'int_encoded', 'one_hot_encoded', 'difficult']:
     raise ValueError(f"{stage} is an invalid stage")
 
   assert type(split) in (list, str) 
@@ -148,6 +149,8 @@ def get_data(
 
     return res if len(res) > 1 else res[0]
   
+
+
   if stage == 'tokenised':
     path = DATA['tokenised']
     for i, s in enumerate(split):
@@ -178,6 +181,27 @@ def get_data(
       res[2*i+1] = y 
 
     return res if len(res) > 1 else res[0]
+
+def get_difficult_cases(which='raw'):
+  """
+  _which_ can be 'raw' or 'sentences'
+  'sentences' are used when calling model.predict(get_difficult_cases('sentences'))
+  'raw' is used to get the original format
+  
+  """
+  assert type(which) == str
+
+  path = DATA['difficult']
+  difficult_cases = _load_json_gz(f"{path}/phase2_testData-masked.json.gz")
+  
+  if which == 'sentences':
+    sentences = []
+    for line in difficult_cases:
+      sentences.append(line['reviewText'])
+    return sentences
+  
+  elif which == 'raw':
+    return difficult_cases
 
 def get_encodings(which='word2idx'):
   assert type(which) in (list, str)
