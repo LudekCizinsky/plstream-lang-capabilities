@@ -20,8 +20,8 @@ Pipeline:
 Project flow
 - [x] 1. Put the baseline prediction on CodaLab(23.03.)
 - [x] 2. Put the description of the baseline on Learnit (.txt file with 200 words) (23.03.)
-- [ ] 3. Hand in difficult cases (30.03.)
-- [ ] 4. Predict difficult cases using our baseline (06.04.)
+- [x] 3. Hand in difficult cases (30.03.)
+- [x] 4. Predict difficult cases using our baseline (06.04.)
 - [ ] 5. Presentation of proposals (05.04 - 07.04.)
 - [ ] 5. Upload our proposal on LearnIT (21.04.)
 - [ ] 6. Upload draft (not mandatory) (19.05.)
@@ -30,20 +30,18 @@ Project flow
 1./2. Baseline Predictions/ Description
 
 3. Difficult Cases
-- [ ] extract wrong predictions
+- [x] extract wrong predictions
       - analyse manually
       - statistics false positives/ false negatives rate
 
-- [ ] look at checklist repo
+- [x] look at checklist repo
   (https://github.com/marcotcr/checklist#table-of-contents)
   and see if we can automatically generate difficult casees
 
-- [ ] hand engineer difficult cases
+- [x] hand engineer difficult cases
       - negation
       - changed named entities
       - 
-
-- [ ] 
 
 4. Predictions on difficult cases
 
