@@ -4,6 +4,7 @@
 from scripts.utils import output, working_on, finished
 output('Loading Modules')
 
+from scripts.models import plstream
 from scripts.utils import get_data, get_encodings
 from scripts.feature_ext import get_training_data, get_test_data
 from scripts.evaluation import evaluate_baseline
@@ -11,11 +12,12 @@ from timeit import default_timer as timer
 import datetime
 import os
 import json
+PYTHON_PATH = '/Users/co2yd4bcjgh6/.pyenv/shims/python'
 
 def main():
   total = timer() # global timer
   start = working_on('Loading Data')
-
+  
   # get extracted data (extracted and tokenised)
   X_train, y_train, X_dev, y_dev = get_data(stage='extracted', split=['train', 'dev']) 
 
@@ -61,6 +63,8 @@ def main():
   print(f"Predictions saved to: {path}")
   finished('Saving Test Predictions in Original Format', timer() - start)
 
+  working_on('Import plstream')
+  plstream(PYTHON_PATH)
   finished('Entire Pipeline', timer() - total)
 
 if __name__ == "__main__":
