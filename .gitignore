@@ -130,3 +130,5 @@ dmypy.json
 
 # personal runner located at src/
 runner.py
+train.csv
+output
