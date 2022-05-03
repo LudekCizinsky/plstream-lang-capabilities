@@ -49,7 +49,7 @@ class unsupervised_OSA(MapFunction):
         # model pruning
         self.LRU_index = ['good','bad']
         self.max_index = max(self.LRU_index)
-        self.LRU_cache_size = 30000
+        self.LRU_cache_size = 30000 #Least Recently Used Cache discards the least recently used items first
         self.sno = nltk.stem.SnowballStemmer('english')
 
         # model merging
@@ -123,20 +123,27 @@ class unsupervised_OSA(MapFunction):
             return ('collecting', '1')
 
     def model_prune(self, model):
-
+        # len(model.wv.index_to_key) is the size of a vocabulary
         if len(model.wv.index_to_key) <= self.LRU_cache_size:
             return model
         else:
             word_to_prune = list(self.LRU_index[30000:])
+            # Here I think we delete the old words (we keep only the most recent 30000 words)
             for word in word_to_prune:
                 k = model.wv.key_to_index[word]
                 del model.wv.index_to_key[k]
                 del model.wv.key_to_index[word]
+
+            # new vocabulary has only the 30000 most recent words
             self.vocabulary = list(model.wv.index_to_key)
             return model
 
     def get_model_new(self, final_words, final_vectors, final_syn1, final_syn1neg, final_cum_table, corpus_count,
                       final_count, final_sample_int, final_code, final_point, model):
+        """
+        Create a new model from the old one (a copy of a model)
+        Is used when we want to merge two existing models
+        """
 
         model_new = copy.deepcopy(model)
         n_words = len(final_words)
@@ -157,6 +164,10 @@ class unsupervised_OSA(MapFunction):
         return model_new
 
     def model_merge(self, model1, model2):
+        """
+        Takes two models and merges them using get_model_new(), it basically checks for each parameter(word,its vector and other stuff) if it is in the other model, if it is, it does some statistic
+        summary of those two models, otherwise it just gets the parameter that is in either of them
+        """
         if model1[0] == 'labelled':
             return (model1[1]) + (model2[1])
         elif model1[0] == 'model':
@@ -288,6 +299,7 @@ class unsupervised_OSA(MapFunction):
                          total_examples=call_model.corpus_count,
                          epochs=call_model.epochs)
         for word in call_model.wv.index_to_key:
+            # for a word in the models vocabulary
             if word not in self.vocabulary:  # new words
                 self.LRU_index.insert(0, word)
             else:  # duplicate words
@@ -296,6 +308,7 @@ class unsupervised_OSA(MapFunction):
         self.vocabulary = list(call_model.wv.index_to_key)
         self.model_to_train = call_model
 
+        # Create true_ref_neg and true_ref_pos based on the words that actually appear in the original ref_neg and ref_pos and the actual model
         if len(self.ref_neg) > 0:
             for words in self.ref_neg:
                 if words in call_model.wv:
@@ -313,11 +326,13 @@ class unsupervised_OSA(MapFunction):
         self.cleaned_text = []
         self.true_label = []
 
+        # IF a certain time (30 units) has passed we prune the model, and return it so it can be merged
         if time() - self.timer >= self.time_to_reset:
             call_model = self.model_prune(call_model)
             model_to_merge = ('model', call_model)
             self.timer = time()
             return model_to_merge
+        # If not then we just keep classifying the incoming sentence
         else:
             not_yet = ('labelled', classify_result)
             return not_yet
@@ -338,6 +353,7 @@ class unsupervised_OSA(MapFunction):
         sentence = np.zeros(20)
         counter = 0
         cos_sim_bad, cos_sim_good = 0, 0
+        # Represent the tweet as a sum of its word vectors
         for words in tweet:
             try:
                 sentence += model.wv[words]  # np.array(list(model.wv[words]) + new_feature)
