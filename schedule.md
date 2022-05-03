@@ -22,8 +22,8 @@ Project flow
 - [x] 2. Put the description of the baseline on Learnit (.txt file with 200 words) (23.03.)
 - [x] 3. Hand in difficult cases (30.03.)
 - [x] 4. Predict difficult cases using our baseline (06.04.)
-- [ ] 5. Presentation of proposals (05.04 - 07.04.)
-- [ ] 5. Upload our proposal on LearnIT (21.04.)
+- [x] 5. Presentation of proposals (05.04 - 07.04.)
+- [x] 5. Upload our proposal on LearnIT (21.04.)
 - [ ] 6. Upload draft (not mandatory) (19.05.)
 - [ ] 7. Final project upload (27.05.)
 
@@ -86,3 +86,11 @@ Ideas:
     POS tagger) to feed through classifier
 
   always check for performance loss/ time gained balance.
+  
+# Project phase
+Todo:
+- [ ] write a the set of tests from checklist and their description
+- [ ] recreate the checklist tests and save them in the same format as `train.csv` that our plstream runs
+- [ ] create an evaluation script, that can read the predictions and report the same metrics as `checklist` (e.g. failure rate etc.)
+- [ ] based on Rob's idea, take another recent `supevised model` and run the same set of tests, and see where `plstream` differs from the model
+- [ ] start writing sections to the report (methodology, related work etc.)
