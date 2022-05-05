@@ -72,7 +72,7 @@ def main():
     shutil.copyfile("data/train.csv", "data/final.csv")
 
     with open("data/final.csv", "a") as final:
-      with open("data/checklist-data", "r") as tests:
+      with open("data/checklist-tests.txt", "r") as tests:
         for test in tests:
           test = test.strip().replace('"', '')
           t = f'0,"{test}"\n'
