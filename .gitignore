@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# data is too big
+src/project/data/train.csv
+src/project/data/final.csv
+
 .DS_Store
 # c extensions
 *.so
