@@ -23,7 +23,7 @@ from checklist.test_suite import TestSuite
 SUITE_PATH = 'sentiment_suite.pkl'
 PRED_PATH = 'predictions'
 PYTHON_PATH = subprocess.check_output(
-    "which python", shell=True).strip().decode('utf-8')
+    "which python3", shell=True).strip().decode('utf-8')
 
 # parser
 parser = argparse.ArgumentParser(

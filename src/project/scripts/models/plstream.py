@@ -393,11 +393,9 @@ class PLStream(MapFunction):
 
 def plstream(python_path, data_path):
   print('-- Getting stream ready')
-  # parallelism = 4
 
   # load data
   f = pd.read_csv(data_path, index_col=False)
-  print(f.columns)
   
   # subset of training data
   n = 20000
@@ -412,13 +410,12 @@ def plstream(python_path, data_path):
   
   print('-- Setting up the job')
   env = StreamExecutionEnvironment.get_execution_environment()
+  env.set_parallelism(1) # must be present otherwise a grpc error occurs
   env.set_python_executable(python_path)
   env.get_checkpoint_config().set_checkpointing_mode(CheckpointingMode.EXACTLY_ONCE)
 
   ds = env.from_collection(collection=data_stream)
   s1 = ds.map(PLStream()).filter(lambda x: x[0] != 'collecting')
-  s1.print()
-  return
   s2 = s1.key_by(lambda x: x[0], key_type=Types.STRING())
   s3 = s2.reduce(lambda x, y: (x[0], PLStream().model_merge(x, y)))
   s4 = s3.filter(lambda x: x[0] != 'model').map(for_output(), output_type=Types.STRING())
@@ -426,6 +423,7 @@ def plstream(python_path, data_path):
   print('> Done\n')
 
   # checklist stream
+  print(f'Number of cores used: {env.get_parallelism()}')
   
   print('-- Running the job on local cluster')
   env.execute("osa_job")
