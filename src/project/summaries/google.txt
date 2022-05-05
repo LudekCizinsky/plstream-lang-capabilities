@@ -1,0 +1,667 @@
+Summary from GOOGLE
+Vocabulary
+
+single positive words
+Test cases:      34
+Fails (rate):    5 (14.7%)
+
+Example fails:
+0.0 0.6 0.4 valued
+----
+0.0 1.0 0.0 like
+----
+0.0 0.6 0.4 admire
+----
+
+
+single negative words
+Test cases:      35
+Fails (rate):    17 (48.6%)
+
+Example fails:
+0.0 1.0 0.0 hard
+----
+0.2 0.8 0.0 bad
+----
+0.0 1.0 0.0 regret
+----
+
+
+single neutral words
+Test cases:      13
+Fails (rate):    0 (0.0%)
+
+
+Sentiment-laden words in context
+Test cases:      8658
+Test cases run:  500
+Fails (rate):    75 (15.0%)
+
+Example fails:
+0.0 1.0 0.0 That plane was lame.
+----
+0.0 1.0 0.0 This cabin crew is hard.
+----
+0.4 0.6 0.0 That flight was creepy.
+----
+
+
+neutral words in context
+Test cases:      1716
+Test cases run:  500
+Fails (rate):    38 (7.6%)
+
+Example fails:
+0.2 0.0 0.8 This cabin crew is Indian.
+----
+0.1 0.0 0.8 We saw this cabin crew.
+----
+0.2 0.0 0.8 That cabin crew is private.
+----
+
+
+intensifiers
+Test cases:      2000
+Test cases run:  500
+After filtering: 415 (83.0%)
+Fails (rate):    7 (1.7%)
+
+Example fails:
+0.3 0.0 0.7 I like that flight.
+0.0 0.8 0.2 I sure like that flight.
+
+----
+0.7 0.0 0.3 We regretted the flight.
+0.0 1.0 0.0 We particularly regretted the flight.
+
+----
+0.2 0.0 0.8 I welcome that food.
+0.3 0.0 0.7 I sure welcome that food.
+
+----
+
+
+reducers
+Test cases:      2000
+Test cases run:  500
+After filtering: 194 (38.8%)
+Fails (rate):    3 (1.5%)
+
+Example fails:
+0.3 0.0 0.7 That flight was extraordinary.
+0.2 0.0 0.8 That flight was kinda extraordinary.
+
+----
+0.7 0.0 0.3 The crew is difficult.
+0.8 0.0 0.2 The crew is generally difficult.
+
+----
+0.3 0.0 0.7 That company was extraordinary.
+0.2 0.0 0.8 That company was somewhat extraordinary.
+
+----
+
+
+change neutral words with BERT
+Test cases:      500
+Fails (rate):    81 (16.2%)
+
+Example fails:
+0.0 0.8 0.2 @united hi I left my asus tablet on flight to Heathrow from Newark on 16th feb and wondered how long it takes for someone to check if found?
+0.7 0.0 0.3 @united hi I left my asus tablet on returning to Heathrow from Newark on 16th feb and wondered how long it takes for someone to check if found?
+
+----
+0.7 0.0 0.3 @SouthwestAir flight just Cancelled Flighted. Can you help me rebook?
+0.4 0.6 0.0 @SouthwestAir has just Cancelled Flighted. Can you help me rebook?
+0.4 0.6 0.0 @SouthwestAir is just Cancelled Flighted. Can you help me rebook?
+
+----
+0.4 0.6 0.0 @united DM'd you 4 hrs ago at your request. No response to be found .... just like my bag.
+0.7 0.0 0.3 @united DM'd me 4 hrs ago at your request. No response to be found .... just like my bag.
+0.7 0.0 0.3 @united DM'd you 4 hrs ago following your request. No response to be found .... just like my bag.
+
+----
+
+
+add positive phrases
+Test cases:      500
+Fails (rate):    62 (12.4%)
+
+Example fails:
+0.1 0.0 0.9 @AmericanAir Your response has been incredible. Truly amazed at the steps you have taken to enhance your customer relations. Big thank you 😄
+0.2 0.0 0.8 @AmericanAir Your response has been incredible. Truly amazed at the steps you have taken to enhance your customer relations. Big thank you. I like you.
+
+----
+0.2 0.0 0.8 @AmericanAir I love the Admiral Clubs! Thanks, hey can you follow me?
+0.2 0.0 0.8 @AmericanAir I love the Admiral Clubs! Thanks, hey can you follow me. I like you.
+0.2 0.0 0.8 @AmericanAir I love the Admiral Clubs! Thanks, hey can you follow me. I value you.
+
+----
+0.1 0.0 0.9 @JetBlue: So excited to hear about your move towards international travel from Long Beach Airport!
+0.3 0.0 0.7 @JetBlue: So excited to hear about your move towards international travel from Long Beach Airport. I would fly with you again.
+0.3 0.0 0.7 @JetBlue: So excited to hear about your move towards international travel from Long Beach Airport. I value you.
+
+----
+
+
+add negative phrases
+Test cases:      500
+Fails (rate):    173 (34.6%)
+
+Example fails:
+0.4 0.6 0.0 @united What is the point of a UPC code on checked baggage if you can't tell me where my luggage is? Vacation- day 3: trying on swimsuits...
+0.2 0.8 0.0 @united What is the point of a UPC code on checked baggage if you can't tell me where my luggage is? Vacation- day 3: trying on swimsuits. Never flying with you again.
+
+----
+0.4 0.6 0.0 @AmericanAir over 70 days  no contact from a human or apology letter. @AmericanAir is #yucki. Read all about it soon http://t.co/9R9OmzQAVI
+0.2 0.8 0.0 @AmericanAir over 70 days  no contact from a human or apology letter. @AmericanAir is #yucki. Read all about it soon http://t.co/9R9OmzQAVI. I dread you.
+
+----
+0.8 0.0 0.1 @usairways im trying to get my dads wheelchair and no one is answering at Dulles.we have tried to call back on.multiple times
+0.7 0.0 0.3 @usairways im trying to get my dads wheelchair and no one is answering at Dulles.we have tried to call back on.multiple times. I regret you.
+0.8 0.0 0.2 @usairways im trying to get my dads wheelchair and no one is answering at Dulles.we have tried to call back on.multiple times. You are creepy.
+
+----
+
+
+
+
+Robustness
+
+add random urls and handles
+Test cases:      500
+Fails (rate):    67 (13.4%)
+
+Example fails:
+0.7 0.0 0.3 @SouthwestAir Any ETD for SWA1004 from PHL? Appears delayed but no info available at gate.
+0.4 0.6 0.0 @SouthwestAir Any ETD for SWA1004 from PHL? Appears delayed but no info available at gate. @6zu7lm
+0.4 0.6 0.0 @SouthwestAir Any ETD for SWA1004 from PHL? Appears delayed but no info available at gate. @D7YAGT
+
+----
+0.7 0.0 0.3 @united your Airbus a320 seats are awful. They don't recline.
+0.4 0.6 0.0 @united your Airbus a320 seats are awful. They don't recline. @KCsN7A
+0.4 0.6 0.0 @united your Airbus a320 seats are awful. They don't recline. @DV5Qq4
+
+----
+0.7 0.0 0.3 @USAirways what's the issue with flight 4420 from jax being delayed tonight?
+0.2 0.8 0.0 @USAirways what's the issue with flight 4420 from jax being delayed tonight? @Bbb78d
+0.2 0.8 0.0 @USAirways what's the issue with flight 4420 from jax being delayed tonight? @VI0AKp
+
+----
+
+
+punctuation
+Test cases:      500
+Fails (rate):    38 (7.6%)
+
+Example fails:
+0.0 0.6 0.4 @USAirways made it to the Bahamas for work but my luggage didn't. I know #travel happens but is there anyway I can get more help/info?
+0.3 0.0 0.7 @USAirways made it to the Bahamas for work but my luggage didn't. I know #travel happens but is there anyway I can get more help/info
+
+----
+0.0 1.0 0.0 @SouthwestAir can someone help me set up a callback today?
+0.3 0.0 0.7 @SouthwestAir can someone help me set up a callback today
+
+----
+0.4 0.6 0.0 @AmericanAir what are the odds my bag was picked up by someone not me while in another country? Because it says it hasn't been located yet.
+0.7 0.0 0.3 @AmericanAir what are the odds my bag was picked up by someone not me while in another country? Because it says it hasn't been located yet
+
+----
+
+
+typos
+Test cases:      500
+Fails (rate):    51 (10.2%)
+
+Example fails:
+0.9 0.0 0.1 @VirginAmerica I spoke with a representative that offered no solution, I am a loyal customer who flies on @VirginAtlantic as well
+0.2 0.8 0.0 @VirginAmerica I spoke with a representative that offered n osolution, I am a loyal customer who flies on @VirginAtlantic as well
+
+----
+0.3 0.0 0.7 @USAirways okay, great. Thank you!
+0.0 1.0 0.0 @USAirways okay, great.T hank you!
+
+----
+0.8 0.0 0.2 @united This must be a drone “@united: @KeamBleam We understand your frustration. Our Bag team is working hard to get your bag(s) to you..."
+0.2 0.8 0.0 @united This must be a drone “@united: @KeamBleam We understand your frustrtaion. Our Bag team is working hard to get your bag(s) to you..."
+
+----
+
+
+2 typos
+Test cases:      500
+Fails (rate):    68 (13.6%)
+
+Example fails:
+0.3 0.0 0.7 @JetBlue expanding!  http://t.co/Kk6EixifP5  #Nantucket #Aviation
+0.0 0.8 0.2 @JetBlu eexpanding!  http://t.co/Kk6EixifP5 # Nantucket #Aviation
+
+----
+0.8 0.0 0.2 @united JT the issue is with missed connections early gate closings and zero concern from customer service
+0.0 1.0 0.0 @united JT the issue is with missed connections early gate closings and zeroc oncern from custmoer service
+
+----
+0.9 0.0 0.1 @united it's disgusting and unconscionable the treatment I've received tonight.
+0.0 1.0 0.0 @united it's disgustinga nd unconscionable the treatemnt I've received tonight.
+
+----
+
+
+contractions
+Test cases:      1000
+Test cases run:  500
+Fails (rate):    15 (3.0%)
+
+Example fails:
+0.4 0.6 0.0 @united why do you want me to be loyal  if don't let me carry on my bag that easily fits in overhead
+0.7 0.0 0.3 @united why do you want me to be loyal  if do not let me carry on my bag that easily fits in overhead
+
+----
+0.4 0.6 0.0 @USAirways ah, and I was only given one shuttle voucher, so if I do ever get back to the airport you'll be getting the bill
+0.7 0.0 0.3 @USAirways ah, and I was only given one shuttle voucher, so if I do ever get back to the airport you will be getting the bill
+
+----
+0.4 0.6 0.0 @USAirways we've now learned to never fly with u again. You've lost 16 customers from our group + the hundreds more from our company
+0.7 0.0 0.3 @USAirways we have now learned to never fly with u again. You have lost 16 customers from our group + the hundreds more from our company
+
+----
+
+
+
+
+NER
+
+change names
+Test cases:      331
+Fails (rate):    50 (15.1%)
+
+Example fails:
+0.7 0.0 0.3 @United @Skywest do it again!   I will now miss one or probably both our Aspen events. #Fail
+0.4 0.6 0.0 @United @Skywest do it again!   I will now miss one or probably both our Andrea events. #Fail
+0.4 0.6 0.0 @United @Skywest do it again!   I will now miss one or probably both our Katherine events. #Fail
+
+----
+0.0 0.6 0.4 @united Please than Robin at EWR Premiere Desk for helping me get on a an earlier flight. She did the work.  Huge thanks.
+0.3 0.0 0.7 @united Please than Holly at EWR Premiere Desk for helping me get on a an earlier flight. She did the work.  Huge thanks.
+0.3 0.0 0.7 @united Please than Grace at EWR Premiere Desk for helping me get on a an earlier flight. She did the work.  Huge thanks.
+
+----
+0.0 0.6 0.4 @SouthwestAir to end its daily #B737-700 flights from #Washington Reagan to #FtMyers on 8AUG #avgeek
+0.3 0.0 0.7 @SouthwestAir to end its daily #B737-700 flights from #James Kelly to #FtMyers on 8AUG #avgeek
+
+----
+
+
+change locations
+Test cases:      909
+Test cases run:  500
+Fails (rate):    104 (20.8%)
+
+Example fails:
+0.0 1.0 0.0 @USAirways I didn't even leave the airport and you sent 2 of my bags to Philadelphia!
+0.7 0.0 0.3 @USAirways I didn't even leave the airport and you sent 2 of my bags to College Station!
+0.7 0.0 0.3 @USAirways I didn't even leave the airport and you sent 2 of my bags to Rockwall!
+
+----
+0.0 1.0 0.0 @VirginAmerica Now, when will we see VirginAmerica come to Philadelphia (PHL).
+0.3 0.0 0.7 @VirginAmerica Now, when will we see VirginAmerica come to Ormond Beach (PHL).
+
+----
+0.7 0.0 0.3 @SouthwestAir there's a current Cancelled Flightlation in Indianapolis, my girlfriend is stranded. Any ideas, or help you can provide?
+0.4 0.6 0.0 @SouthwestAir there's a current Cancelled Flightlation in Texas City, my girlfriend is stranded. Any ideas, or help you can provide?
+
+----
+
+
+change numbers
+Test cases:      1000
+Test cases run:  500
+Fails (rate):    38 (7.6%)
+
+Example fails:
+0.7 0.0 0.3 @united why does it cost $547 to change the city of origin when the same flight on http://t.co/8FMZZOltv9 costs $165 #customerservicefail
+0.4 0.6 0.0 @united why does it cost $547 to change the city of origin when the same flight on http://t.co/8FMZZOltv9 costs $166 #customerservicefail
+
+----
+0.4 0.6 0.0 @united Flight 395. Rolling delay of 1 hour 42 minutes
+0.7 0.0 0.3 @united Flight 466. Rolling delay of 1 hour 42 minutes
+0.7 0.0 0.3 @united Flight 468. Rolling delay of 1 hour 42 minutes
+
+----
+0.0 0.6 0.4 @SouthwestAir to start daily #B737-700 flights from #Washington Reagan to #FtLauderdale on 8AUG #avgeek
+0.3 0.0 0.7 @SouthwestAir to start daily #B737-718 flights from #Washington Reagan to #FtLauderdale on 8AUG #avgeek
+0.3 0.0 0.7 @SouthwestAir to start daily #B737-642 flights from #Washington Reagan to #FtLauderdale on 8AUG #avgeek
+
+----
+
+
+
+
+Fairness
+
+protected: race
+Test cases:      600
+Test cases run:  500
+Fails (rate):    3 (0.6%)
+
+Example fails:
+0.3 0.0 0.7 Melissa is a black artist.
+0.0 0.6 0.4 Melissa is an asian artist.
+
+----
+0.3 0.0 0.7 Avery is a black heritage.
+0.0 0.6 0.4 Avery is an asian heritage.
+
+----
+0.3 0.0 0.7 Mary is a black musician.
+0.0 0.6 0.4 Mary is an asian musician.
+
+----
+
+
+protected: sexual
+Test cases:      600
+Test cases run:  500
+Fails (rate):    6 (1.2%)
+
+Example fails:
+0.7 0.0 0.3 Scott is an asexual joke.
+0.2 0.8 0.0 Scott is a trans joke.
+
+----
+0.7 0.0 0.3 Jack is an asexual issue.
+0.2 0.8 0.0 Jack is a trans issue.
+0.4 0.6 0.0 Jack is a bisexual issue.
+
+----
+0.7 0.0 0.3 Chad is an asexual issue.
+0.0 1.0 0.0 Chad is a trans issue.
+0.4 0.6 0.0 Chad is a bisexual issue.
+
+----
+
+
+protected: religion
+Test cases:      600
+Test cases run:  500
+Fails (rate):    8 (1.6%)
+
+Example fails:
+0.0 0.6 0.4 Crystal is a Christian icon.
+0.3 0.0 0.7 Crystal is a Taoist icon.
+0.3 0.0 0.7 Crystal is a Baha'i icon.
+
+----
+0.3 0.0 0.7 Carlos is a Christian faith.
+0.0 0.6 0.4 Carlos is an Eastern Orthodox faith.
+
+----
+0.3 0.0 0.7 Grace is a Christian refugee.
+0.0 0.6 0.4 Grace is an Eastern Orthodox refugee.
+
+----
+
+
+protected: nationality
+Test cases:      600
+Test cases run:  500
+Fails (rate):    2 (0.4%)
+
+Example fails:
+0.3 0.0 0.7 Patricia is a Chinese designer.
+0.0 0.6 0.4 Patricia is an Indian designer.
+0.0 0.6 0.4 Patricia is an American designer.
+
+----
+0.4 0.6 0.0 Ashley is a Chinese character.
+0.7 0.0 0.3 Ashley is an Indian character.
+0.7 0.0 0.3 Ashley is an American character.
+
+----
+
+
+
+
+Temporal
+
+used to, but now
+Test cases:      8000
+Test cases run:  500
+Fails (rate):    183 (36.6%)
+
+Example fails:
+0.0 0.8 0.2 I think this airline is happy,  in the past I thought it was frustrating.
+----
+0.0 0.6 0.4 I think this airline is sad, even though I used to think it was wonderful.
+----
+0.0 0.8 0.2 I think this airline is sweet, although in the past I thought it was ugly.
+----
+
+
+"used to" should reduce
+Test cases:      4368
+Test cases run:  500
+After filtering: 200 (40.0%)
+Fails (rate):    4 (2.0%)
+
+Example fails:
+0.7 0.0 0.3 it was a frustrating crew.
+0.8 0.0 0.2 I used to think it was a frustrating crew.
+
+----
+0.7 0.0 0.3 it is a frustrating cabin crew.
+0.8 0.0 0.2 I used to think it is a frustrating cabin crew.
+
+----
+0.7 0.0 0.3 it is a bad cabin crew.
+0.8 0.0 0.2 I used to think it is a bad cabin crew.
+
+----
+
+
+
+
+Negation
+
+simple negations: negative
+Test cases:      6318
+Test cases run:  500
+Fails (rate):    231 (46.2%)
+
+Example fails:
+0.0 1.0 0.0 This isn't an adorable staff.
+----
+0.3 0.0 0.7 I would never say I like the staff.
+----
+0.0 1.0 0.0 It is not an adorable cabin crew.
+----
+
+
+simple negations: not negative
+Test cases:      6786
+Test cases run:  500
+Fails (rate):    271 (54.2%)
+
+Example fails:
+0.8 0.0 0.2 The flight isn't awful.
+----
+0.7 0.0 0.3 No one despises that customer service.
+----
+0.9 0.0 0.1 I don't think I despise the customer service.
+----
+
+
+simple negations: not neutral is still neutral
+Test cases:      2496
+Test cases run:  500
+Fails (rate):    198 (39.6%)
+
+Example fails:
+0.8 0.0 0.2 It wasn't a private pilot.
+----
+0.8 0.0 0.1 That was not a private cabin crew.
+----
+0.8 0.0 0.2 That is not an Italian cabin crew.
+----
+
+
+simple negations: I thought x was positive, but it was not (should be negative)
+Test cases:      1992
+Test cases run:  500
+Fails (rate):    41 (8.2%)
+
+Example fails:
+0.4 0.6 0.0 I thought this cabin crew would be fantastic, but it wasn't.
+----
+0.4 0.6 0.0 I thought I would value this crew, but I did not.
+----
+0.4 0.6 0.0 I thought this seat would be exceptional, but it wasn't.
+----
+
+
+simple negations: I thought x was negative, but it was not (should be neutral or positive)
+Test cases:      2124
+Test cases run:  500
+Fails (rate):    452 (90.4%)
+
+Example fails:
+0.8 0.0 0.1 I thought this food would be rough, but it wasn't.
+----
+0.7 0.0 0.3 I thought I would regret the service, but I did not.
+----
+0.8 0.0 0.1 I thought I would abhor the plane, but I did not.
+----
+
+
+simple negations: but it was not (neutral) should still be neutral
+Test cases:      804
+Test cases run:  500
+Fails (rate):    224 (44.8%)
+
+Example fails:
+0.8 0.0 0.2 I thought that seat would be private, but it wasn't.
+----
+0.8 0.0 0.1 I thought that airline would be private, but it was not.
+----
+0.7 0.0 0.3 I thought I would find this flight, but I didn't.
+----
+
+
+Hard: Negation of positive with neutral stuff in the middle (should be negative)
+Test cases:      1000
+Test cases run:  500
+Fails (rate):    500 (100.0%)
+
+Example fails:
+0.1 0.0 0.8 I wouldn't say, given the time that I've been flying, that the customer service was wonderful.
+----
+0.1 0.0 0.9 I don't think, given my history with airplanes, that the cabin crew is fun.
+----
+0.2 0.0 0.8 I don't think, given the time that I've been flying, that that was an awesome service.
+----
+
+
+Hard: Negation of negative with neutral stuff in the middle (should be positive or neutral)
+Test cases:      1000
+Test cases run:  500
+Fails (rate):    354 (70.8%)
+
+Example fails:
+0.8 0.0 0.1 I wouldn't say, given that I am from Brazil, that this seat is unhappy.
+----
+0.7 0.0 0.3 i wouldn't say, given the time that I've been flying, that this is a frustrating plane.
+----
+0.9 0.0 0.1 i can't say, given the time that I've been flying, that that is a lousy service.
+----
+
+
+negation of neutral with neutral in the middle, should still neutral
+Test cases:      1000
+Test cases run:  500
+Fails (rate):    17 (3.4%)
+
+Example fails:
+0.3 0.0 0.7 I wouldn't say, given it's a Tuesday, that we find this cabin crew.
+----
+0.7 0.0 0.3 I don't think, given it's a Tuesday, that this company was private.
+----
+0.3 0.0 0.7 I wouldn't say, given my history with airplanes, that this cabin crew is Australian.
+----
+
+
+
+
+SRL
+
+my opinion is what matters
+Test cases:      8528
+Test cases run:  500
+Fails (rate):    312 (62.4%)
+
+Example fails:
+0.1 0.0 0.9 I think you are sad, but some people think you are fantastic.
+----
+0.1 0.0 0.8 I hate you, but my parents love you.
+----
+0.2 0.8 0.0 Some people think you are fun, but I think you are boring.
+----
+
+
+Q & A: yes
+Test cases:      7644
+Test cases run:  500
+Fails (rate):    288 (57.6%)
+
+Example fails:
+0.4 0.6 0.0 Do I think the airline is ridiculous? Yes
+----
+0.4 0.6 0.0 Do I think that is a nasty customer service? Yes
+----
+0.0 1.0 0.0 Do I think this is a sad seat? Yes
+----
+
+
+Q & A: yes (neutral)
+Test cases:      1560
+Test cases run:  500
+Fails (rate):    4 (0.8%)
+
+Example fails:
+0.3 0.0 0.7 Did I find this cabin crew? Yes
+----
+0.3 0.0 0.7 Do I think the pilot is private? Yes
+----
+0.3 0.0 0.7 Did I find that cabin crew? Yes
+----
+
+
+Q & A: no
+Test cases:      7644
+Test cases run:  500
+Fails (rate):    454 (90.8%)
+
+Example fails:
+0.0 0.6 0.4 Do I think this seat is exceptional? No
+----
+0.4 0.6 0.0 Did we value that flight? No
+----
+0.4 0.6 0.0 Did we welcome the food? No
+----
+
+
+Q & A: no (neutral)
+Test cases:      1560
+Test cases run:  500
+Fails (rate):    8 (1.6%)
+
+Example fails:
+0.7 0.0 0.3 Do I think it was a private service? No
+----
+0.7 0.0 0.3 Do I think that was a private food? No
+----
+0.7 0.0 0.3 Do I think this was a private food? No
+----
+
+
+
+
