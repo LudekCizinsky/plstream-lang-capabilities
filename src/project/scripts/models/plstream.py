@@ -32,6 +32,7 @@ from pyflink.common.serialization import Encoder
 
 np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)
 
+MODELS = []
 class for_output(MapFunction):
   def __init__(self):
     pass
@@ -45,7 +46,7 @@ class PLStream(MapFunction):
     self.true_label = []
     self.collector = []
     self.cleaned_text = []
-    self.collector_size = 2000
+    self.collector_size = 5 
 
     # model pruning
     self.LRU_index = ['good','bad']
@@ -60,7 +61,8 @@ class PLStream(MapFunction):
     self.flag = True
     self.model_to_train = None
     self.timer = time()
-    self.time_to_reset = 30
+    self.time_to_reset = 5
+    self.trained = False
 
     # similarity-based classification preparation
     self.true_ref_neg = []
@@ -346,12 +348,14 @@ class PLStream(MapFunction):
       return not_yet
 
   def eval(self, tweets, model):
+    print('VOCAB SIZE', len(model.wv.index_to_key))
+    MODELS.append(model)
     for i in range(len(tweets)):
       predict_result = self.predict(tweets[i], model)
       self.predictions.append(predict_result)
-      self.labelled_dataset += (self.collector[i]+' '+predict_result+'@@@@')
-    self.neg_coefficient = self.predictions.count('0')/self.predictions.count('1')
-    self.pos_coefficient = 1 - self.neg_coefficient
+      self.labelled_dataset += predict_result+'\n'
+    #self.neg_coefficient = self.predictions.count('0')/self.predictions.count('1')
+    #self.pos_coefficient = 1 - self.neg_coefficient
     self.predictions = []
     self.collector = []
     ans = self.labelled_dataset
@@ -399,8 +403,8 @@ def plstream(python_path, data_path):
   
   # subset of training data
   n = 20000
-  true_label = list(f.label)[:n]
-  yelp_review = list(f.review)[:n]
+  true_label = list(f.label)#[:n]
+  yelp_review = list(f.review)#[:n]
 
   # get training data stream ready
   data_stream = []
@@ -414,18 +418,43 @@ def plstream(python_path, data_path):
   env.set_python_executable(python_path)
   env.get_checkpoint_config().set_checkpointing_mode(CheckpointingMode.EXACTLY_ONCE)
 
-  ds = env.from_collection(collection=data_stream)
+  training_stream = data_stream[:2000]
+  checklist_stream = data_stream[-87470:]
+
+  #model = PLStream()
+  ds = env.from_collection(collection=training_stream)
   s1 = ds.map(PLStream()).filter(lambda x: x[0] != 'collecting')
-  s2 = s1.key_by(lambda x: x[0], key_type=Types.STRING())
-  s3 = s2.reduce(lambda x, y: (x[0], PLStream().model_merge(x, y)))
-  s4 = s3.filter(lambda x: x[0] != 'model').map(for_output(), output_type=Types.STRING())
-  s5 = s4.add_sink(StreamingFileSink.for_row_format('./output', Encoder.simple_string_encoder()).build())
+  s1.map(lambda x: x[0]).print()
+  #s2 = s1.key_by(lambda x: x[0], key_type=Types.STRING())
+  #s3 = s2.reduce(lambda x, y: (x[0], PLStream().model_merge(x, y)))
+  #s4 = s3.filter(lambda x: x[0] != 'model').map(for_output(), output_type=Types.STRING())
+  #s5 = s4.add_sink(StreamingFileSink.for_row_format('./output', Encoder.simple_string_encoder()).build())
   print('> Done\n')
+
+ # ds.map(PLStream()) \
+ #   .filter(lambda x: x[0] != 'collecting')\
+ #   .key_by(lambda x: x[0], key_type=Types.STRING()) \
+ #   .reduce(lambda x, y: (x[0], PLStream().model_merge(x, y))) \
+ #   .filter(lambda x: x[0] != 'model') \
+ #   .map(for_output(), output_type=Types.STRING()) \
+ #   .add_sink(StreamingFileSink.for_row_format('./output', Encoder.simple_string_encoder()).build())
 
   # checklist stream
   print(f'Number of cores used: {env.get_parallelism()}')
   
   print('-- Running the job on local cluster')
   env.execute("osa_job")
-  print('Done!')
+  return
+  params = redis.StrictRedis(host='localhost', port=6379, db=0)
+  model =  pickle.loads(params.get('word2vec'))
+  predictor = PLStream()
+  preds = predictor.eval([i[0] for i in checklist_stream], model)
+  preds = preds.replace('1','2').replace('0','1')
 
+  with open('predictions/plstream', 'w') as f:
+    f.write(preds)
+  
+  #Testing purpose
+  print('MODELS')
+  print(MODELS)
+  print('Done!')
