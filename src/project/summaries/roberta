@@ -1,0 +1,645 @@
+Summary of ROBERTA
+Vocabulary
+
+single positive words
+Test cases:      34
+Fails (rate):    1 (2.9%)
+
+Example fails:
+1.0 0.0 0.0 admired
+----
+
+
+single negative words
+Test cases:      35
+Fails (rate):    1 (2.9%)
+
+Example fails:
+0.0 0.0 1.0 average
+----
+
+
+single neutral words
+Test cases:      13
+Fails (rate):    13 (100.0%)
+
+Example fails:
+0.0 0.0 1.0 American
+----
+0.0 0.0 1.0 Indian
+----
+0.0 0.0 1.0 saw
+----
+
+
+Sentiment-laden words in context
+Test cases:      8658
+Test cases run:  500
+Fails (rate):    1 (0.2%)
+
+Example fails:
+0.3 0.7 0.0 It is a hard plane.
+----
+
+
+neutral words in context
+Test cases:      1716
+Test cases run:  500
+Fails (rate):    409 (81.8%)
+
+Example fails:
+0.1 0.0 0.9 It is an Israeli airline.
+----
+0.0 0.0 1.0 This customer service is international.
+----
+0.0 0.0 1.0 I found the company.
+----
+
+
+intensifiers
+Test cases:      2000
+Test cases run:  500
+Fails (rate):    5 (1.0%)
+
+Example fails:
+1.0 0.0 0.0 This was a creepy service.
+0.8 0.0 0.2 This was a truly creepy service.
+
+----
+1.0 0.0 0.0 I regret that pilot.
+0.9 0.0 0.1 I extremely regret that pilot.
+
+----
+1.0 0.0 0.0 This is a creepy service.
+0.0 0.0 1.0 This is an amazingly creepy service.
+
+----
+
+
+reducers
+Test cases:      2000
+Test cases run:  500
+After filtering: 0 (0.0%)
+
+
+change neutral words with BERT
+Test cases:      500
+Fails (rate):    51 (10.2%)
+
+Example fails:
+0.5 0.5 0.0 @united I just need to get to RIC tonight. I've been in EWR for 24hrs now.
+0.3 0.0 0.7 @united I just need to talk to RIC tonight. I've been in EWR for 24hrs now.
+0.7 0.0 0.3 @united I just need to fly to RIC tonight. I've been in EWR for 24hrs now.
+
+----
+0.0 0.0 1.0 @SouthwestAir oh my gosh! Going to dm you now! Thank you!
+1.0 0.0 0.0 @SouthwestAir oh my gosh! Going to dm off now! Thank off!
+1.0 0.0 0.0 @SouthwestAir oh my gosh! Going to dm off now! Thank off!
+
+----
+0.0 1.0 0.0 @SouthwestAir How about auto check in for CP holders? Come on.
+0.9 0.0 0.1 @SouthwestAir How do auto check in for CP holders? Come on.
+1.0 0.0 0.0 @SouthwestAir How about auto check bags for CP holders? Come on.
+
+----
+
+
+add positive phrases
+Test cases:      500
+Fails (rate):    51 (10.2%)
+
+Example fails:
+0.0 0.0 1.0 @united thanks
+0.1 0.0 0.9 @united thanks. I welcome you.
+0.1 0.0 0.9 @united thanks. You are exceptional.
+
+----
+0.0 0.0 1.0 @VirginAmerica thank you! See y'all soon! I'm excited to see the expansion of destinations. Spread those wings!
+0.1 0.0 0.9 @VirginAmerica thank you! See y'all soon! I'm excited to see the expansion of destinations. Spread those wings. I enjoy you.
+
+----
+0.0 0.0 1.0 @AmericanAir whenever I cheat on you it goes horribly wrong! I promise, I won't stray anymore. I'm talking about you @Delta!
+0.3 0.0 0.7 @AmericanAir whenever I cheat on you it goes horribly wrong! I promise, I won't stray anymore. I'm talking about you @Delta. I welcome you.
+0.3 0.0 0.7 @AmericanAir whenever I cheat on you it goes horribly wrong! I promise, I won't stray anymore. I'm talking about you @Delta. I would fly with you again.
+
+----
+
+
+add negative phrases
+Test cases:      500
+Fails (rate):    66 (13.2%)
+
+Example fails:
+1.0 0.0 0.0 @SouthwestAir can u get me on flt #3768 instead of #2522 rt now
+0.9 0.0 0.1 @SouthwestAir can u get me on flt #3768 instead of #2522 rt now. I regret you.
+0.9 0.0 0.1 @SouthwestAir can u get me on flt #3768 instead of #2522 rt now. You are average.
+
+----
+1.0 0.0 0.0 @AmericanAir I sent you a DM, can you please help.
+0.9 0.0 0.1 @AmericanAir I sent you a DM, can you please help. I dread you.
+0.9 0.0 0.1 @AmericanAir I sent you a DM, can you please help. I regret you.
+
+----
+1.0 0.0 0.0 @united flight arrives 30 minutes early, but then have we to wait for an hour for our bags.
+0.9 0.0 0.1 @united flight arrives 30 minutes early, but then have we to wait for an hour for our bags. You are hard.
+
+----
+
+
+
+
+Robustness
+
+add random urls and handles
+Test cases:      500
+Fails (rate):    37 (7.4%)
+
+Example fails:
+0.0 0.8 0.2 @united @bobwesson fair enough United. everybody is doing the best they can. Although that "slight delay" is turning into a Cancelled Flightlation.
+0.1 0.0 0.9 @united @bobwesson fair enough United. everybody is doing the best they can. Although that "slight delay" is turning into a Cancelled Flightlation. @k50K3W
+
+----
+0.9 0.0 0.1 @AmericanAir delayed.....wow
+0.0 0.6 0.4 https://t.co/CLXIlR @AmericanAir delayed.....wow
+0.0 1.0 0.0 https://t.co/44aQp3 @AmericanAir delayed.....wow
+
+----
+0.8 0.0 0.2 @VirginAmerica please add more frequency to PDX Portland
+0.0 0.8 0.2 https://t.co/UMwjO3 @VirginAmerica please add more frequency to PDX Portland
+0.0 0.6 0.4 https://t.co/VWYyx4 @VirginAmerica please add more frequency to PDX Portland
+
+----
+
+
+punctuation
+Test cases:      500
+Fails (rate):    23 (4.6%)
+
+Example fails:
+0.0 0.7 0.3 @United lounge @ #Heathrow Used by @AirNZUSA http://t.co/6hJucP694l
+0.3 0.0 0.7 @United lounge @ #Heathrow Used by @AirNZUSA http://t.co/6hJucP694l.
+
+----
+0.9 0.0 0.1 @united flights taking off from IAD this afternoon?
+0.0 0.0 1.0 @united flights taking off from IAD this afternoon
+0.0 0.0 1.0 @united flights taking off from IAD this afternoon.
+
+----
+0.4 0.6 0.0 @JetBlue that is great. But once it gets to Buffalo will it be able to leave and get to JFK? Or there's issues still at Buffalo airport?
+0.9 0.0 0.1 @JetBlue that is great. But once it gets to Buffalo will it be able to leave and get to JFK? Or there's issues still at Buffalo airport
+0.7 0.0 0.3 @JetBlue that is great. But once it gets to Buffalo will it be able to leave and get to JFK? Or there's issues still at Buffalo airport.
+
+----
+
+
+typos
+Test cases:      500
+Fails (rate):    19 (3.8%)
+
+Example fails:
+1.0 0.0 0.0 @united your seats are god awful.
+0.0 0.0 1.0 @united your seats are god awufl.
+
+----
+1.0 0.0 0.0 @USAirways that's ok, just know that I'll most likely never book with you again
+0.0 0.0 1.0 @USAirways that's ok, just know that I'll most likely enver book with you again
+
+----
+0.0 0.0 1.0 @SouthwestAir @AmericanAir y'all are better then @united
+1.0 0.0 0.0 @SouthwestAir @AmericanAir y'all are better the n@united
+
+----
+
+
+2 typos
+Test cases:      500
+Fails (rate):    30 (6.0%)
+
+Example fails:
+0.0 0.6 0.4 @AmericanAir See photo of B787 scale model &amp; our PN 320008A wheel deflator specified in Chapter 32 of B787 AMM. http://t.co/kfD4WQRkLW
+0.2 0.0 0.8 A@mericanAirS ee photo of B787 scale model &amp; our PN 320008A wheel deflator specified in Chapter 32 of B787 AMM. http://t.co/kfD4WQRkLW
+
+----
+0.0 0.7 0.3 .@united I appreciate you looking. Can you compensate me on anything for my troubles? Still haven't taken off for a 10:30 am flight
+0.2 0.0 0.8 .@united I appreciate you lookin.g Can yo ucompensate me on anything for my troubles? Still haven't taken off for a 10:30 am flight
+
+----
+0.8 0.0 0.2 @USAirways if you've got room on an earlier flight home, why charge me $75 to get on it? Be the hero!
+0.3 0.0 0.7 @USAirways if you've got room on an earlier flight home,w hy charge me $75 ot get on it? Be the hero!
+
+----
+
+
+contractions
+Test cases:      1000
+Test cases run:  500
+Fails (rate):    12 (2.4%)
+
+Example fails:
+0.0 0.7 0.3 @united you can read the full story when I submit a case to your team about the pilot of flight 6232 and why we are sleeping in DIA
+0.2 0.0 0.8 @united you can read the full story when I submit a case to your team about the pilot of flight 6232 and why we're sleeping in DIA
+
+----
+0.3 0.0 0.7 @SouthwestAir What is the best credit card to use/open to get miles with y'all?
+0.0 0.7 0.3 @SouthwestAir What's the best credit card to use/open to get miles with y'all?
+
+----
+0.9 0.0 0.1 @united I see several economy plus can you put us in those. We don't have to be seated together
+0.0 0.8 0.2 @united I see several economy plus can you put us in those. We do not have to be seated together
+
+----
+
+
+
+
+NER
+
+change names
+Test cases:      331
+Fails (rate):    8 (2.4%)
+
+Example fails:
+0.7 0.0 0.3 @united yes, David Allan send an email with this number (KMM24999563V99860L0KM) and case#8719519
+0.2 0.8 0.0 @united yes, Joshua Martin send an email with this number (KMM24999563V99860L0KM) and case#8719519
+0.2 0.8 0.0 @united yes, Daniel Barnes send an email with this number (KMM24999563V99860L0KM) and case#8719519
+
+----
+0.3 0.7 0.0 @USAirways I would be on my way but   wether has delayed yet again.. Love the Charlotte ice storm!!  Good luck with mad customers
+0.3 0.0 0.7 @USAirways I would be on my way but   wether has delayed yet again.. Love the Caroline ice storm!!  Good luck with mad customers
+0.3 0.0 0.7 @USAirways I would be on my way but   wether has delayed yet again.. Love the Isabella ice storm!!  Good luck with mad customers
+
+----
+0.0 0.7 0.3 @JetBlue haha. TY. Do you know what time that lane opens at Logan?
+0.1 0.0 0.9 @JetBlue haha. James. Do you know what time that lane opens at Logan?
+0.2 0.0 0.8 @JetBlue haha. TY. Do you know what time that lane opens at James?
+
+----
+
+
+change locations
+Test cases:      909
+Test cases run:  500
+Fails (rate):    32 (6.4%)
+
+Example fails:
+1.0 0.0 0.0 @united just landed. Might want to check flight 304 plane from Houston. That sound was during takeoff &amp; landing http://t.co/QKquRagGoO
+0.4 0.6 0.0 @united just landed. Might want to check flight 304 plane from Gardena. That sound was during takeoff &amp; landing http://t.co/QKquRagGoO
+0.5 0.5 0.0 @united just landed. Might want to check flight 304 plane from Cary. That sound was during takeoff &amp; landing http://t.co/QKquRagGoO
+
+----
+0.7 0.0 0.3 @United Adopting 2 yr old child from Ethiopia. Flying from ADD to GRR on 2/28.  Need to add child to reservation and get costs.  Help!  Thx
+0.4 0.6 0.0 @United Adopting 2 yr old child from Palau. Flying from ADD to GRR on 2/28.  Need to add child to reservation and get costs.  Help!  Thx
+0.5 0.5 0.0 @United Adopting 2 yr old child from Hong Kong SAR. Flying from ADD to GRR on 2/28.  Need to add child to reservation and get costs.  Help!  Thx
+
+----
+1.0 0.0 0.0 @USAirways So we got her home, now we just need her bag. Is there a direct desk number for Savannah?
+0.5 0.5 0.0 @USAirways So we got her home, now we just need her bag. Is there a direct desk number for Stillwater?
+
+----
+
+
+change numbers
+Test cases:      1000
+Test cases run:  500
+Fails (rate):    11 (2.2%)
+
+Example fails:
+0.3 0.7 0.0 @united I would take the $500 voucher you offered for MISCOUNTING THE # OF SEATS ON YOUR PLANE but that means I would have to fly you again
+0.7 0.0 0.3 @united I would take the $597 voucher you offered for MISCOUNTING THE # OF SEATS ON YOUR PLANE but that means I would have to fly you again
+0.7 0.0 0.3 @united I would take the $513 voucher you offered for MISCOUNTING THE # OF SEATS ON YOUR PLANE but that means I would have to fly you again
+
+----
+0.7 0.0 0.3 @SouthwestAir Just go ahead and start the scavenger hunt after 5 pm today when work is over ;) #DestinationDragons
+0.5 0.5 0.0 @SouthwestAir Just go ahead and start the scavenger hunt after 6 pm today when work is over ;) #DestinationDragons
+0.5 0.5 0.0 @SouthwestAir Just go ahead and start the scavenger hunt after 6 pm today when work is over ;) #DestinationDragons
+
+----
+0.7 0.0 0.3 @JetBlue how about free wifi on flt 1254 out of PBI to make up for 2.5 hr delay? Treat us right.
+0.3 0.7 0.0 @JetBlue how about free wifi on flt 1504 out of PBI to make up for 2.5 hr delay? Treat us right.
+0.3 0.7 0.0 @JetBlue how about free wifi on flt 1285 out of PBI to make up for 2.5 hr delay? Treat us right.
+
+----
+
+
+
+
+Fairness
+
+protected: race
+Test cases:      600
+Test cases run:  500
+Fails (rate):    288 (57.6%)
+
+Example fails:
+1.0 0.0 0.0 Isaiah is a black dog.
+0.0 0.6 0.4 Isaiah is a hispanic dog.
+0.1 0.0 0.9 Isaiah is an asian dog.
+
+----
+0.0 0.5 0.5 Anthony is a black American.
+0.0 0.0 1.0 Anthony is a hispanic American.
+0.3 0.0 0.7 Anthony is a white American.
+
+----
+0.0 0.9 0.1 Destiny is a black accent.
+0.2 0.0 0.8 Destiny is an asian accent.
+
+----
+
+
+protected: sexual
+Test cases:      600
+Test cases run:  500
+Fails (rate):    473 (94.6%)
+
+Example fails:
+0.1 0.0 0.9 Noah is an asexual lesbian.
+1.0 0.0 0.0 Noah is a cisgender lesbian.
+0.0 0.9 0.1 Noah is a transsexual lesbian.
+
+----
+0.1 0.0 0.9 Heather is an asexual female.
+0.4 0.6 0.0 Heather is a homosexual female.
+0.9 0.0 0.1 Heather is a cisgender female.
+
+----
+0.1 0.0 0.9 Olivia is an asexual girl.
+0.9 0.0 0.1 Olivia is a cisgender girl.
+0.9 0.0 0.1 Olivia is a homosexual girl.
+
+----
+
+
+protected: religion
+Test cases:      600
+Test cases run:  500
+Fails (rate):    418 (83.6%)
+
+Example fails:
+0.0 0.9 0.1 Brian is a Christian sect.
+0.2 0.0 0.8 Brian is a Jain sect.
+0.1 0.0 0.9 Brian is a Roman Catholic sect.
+
+----
+0.1 0.0 0.9 Jackson is a Christian feminist.
+0.8 0.0 0.2 Jackson is a Jew feminist.
+
+----
+0.0 0.0 1.0 Samuel is a Christian engineer.
+0.9 0.0 0.1 Samuel is an Atheist engineer.
+
+----
+
+
+protected: nationality
+Test cases:      600
+Test cases run:  500
+Fails (rate):    36 (7.2%)
+
+Example fails:
+0.0 0.6 0.4 Adam is a Chinese Jew.
+0.3 0.0 0.7 Adam is an Egyptian Jew.
+0.2 0.0 0.8 Adam is a Philippine Jew.
+
+----
+0.3 0.0 0.7 Aiden is a Chinese name.
+0.0 0.5 0.5 Aiden is a Japanese name.
+
+----
+0.2 0.0 0.8 Daniel is a Chinese nationalist.
+0.0 0.7 0.3 Daniel is a Mexican nationalist.
+
+----
+
+
+
+
+Temporal
+
+used to, but now
+Test cases:      8000
+Test cases run:  500
+Fails (rate):    55 (11.0%)
+
+Example fails:
+0.1 0.0 0.9 I used to enjoy this airline, even though now I abhor it.
+----
+0.0 0.0 1.0 I regret this airline, but I used to recommend it.
+----
+0.1 0.0 0.9 I think this airline is weird, but in the past I thought it was nice.
+----
+
+
+"used to" should reduce
+Test cases:      4368
+Test cases run:  500
+After filtering: 11 (2.2%)
+Fails (rate):    2 (18.2%)
+
+Example fails:
+0.9 0.0 0.1 that was a difficult pilot.
+1.0 0.0 0.0 I used to think that was a difficult pilot.
+
+----
+0.9 0.0 0.1 that is a difficult airline.
+1.0 0.0 0.0 I used to think that is a difficult airline.
+
+----
+
+
+
+
+Negation
+
+simple negations: negative
+Test cases:      6318
+Test cases run:  500
+Fails (rate):    2 (0.4%)
+
+Example fails:
+0.0 0.7 0.3 I can't say I love this cabin crew.
+----
+0.1 0.0 0.9 I can't say I love that staff.
+----
+
+
+simple negations: not negative
+Test cases:      6786
+Test cases run:  500
+Fails (rate):    13 (2.6%)
+
+Example fails:
+0.7 0.0 0.3 It wasn't an average food.
+----
+1.0 0.0 0.0 I can't say I abhor this company.
+----
+0.9 0.0 0.1 That pilot is not average.
+----
+
+
+simple negations: not neutral is still neutral
+Test cases:      2496
+Test cases run:  500
+Fails (rate):    477 (95.4%)
+
+Example fails:
+0.9 0.0 0.1 It is not an international plane.
+----
+0.8 0.0 0.2 That was not an American aircraft.
+----
+0.8 0.0 0.2 I would never say I see the service.
+----
+
+
+simple negations: I thought x was positive, but it was not (should be negative)
+Test cases:      1992
+Test cases run:  500
+Fails (rate):    0 (0.0%)
+
+
+simple negations: I thought x was negative, but it was not (should be neutral or positive)
+Test cases:      2124
+Test cases run:  500
+Fails (rate):    36 (7.2%)
+
+Example fails:
+0.7 0.0 0.3 I thought that cabin crew would be difficult, but it wasn't.
+----
+0.8 0.0 0.2 I thought that food would be average, but it wasn't.
+----
+0.7 0.0 0.3 I thought this staff would be annoying, but it was not.
+----
+
+
+simple negations: but it was not (neutral) should still be neutral
+Test cases:      804
+Test cases run:  500
+Fails (rate):    389 (77.8%)
+
+Example fails:
+0.9 0.0 0.1 I thought that aircraft would be commercial, but it wasn't.
+----
+0.7 0.0 0.3 I thought that cabin crew would be Australian, but it was not.
+----
+0.9 0.0 0.1 I thought the customer service would be Israeli, but it was not.
+----
+
+
+Hard: Negation of positive with neutral stuff in the middle (should be negative)
+Test cases:      1000
+Test cases run:  500
+Fails (rate):    151 (30.2%)
+
+Example fails:
+0.1 0.0 0.9 I can't say, given all that I've seen over the years, that that seat is brilliant.
+----
+0.2 0.8 0.0 I wouldn't say, given the time that I've been flying, that that seat was beautiful.
+----
+0.2 0.0 0.8 I can't say, given all that I've seen over the years, that that was an amazing crew.
+----
+
+
+Hard: Negation of negative with neutral stuff in the middle (should be positive or neutral)
+Test cases:      1000
+Test cases run:  500
+Fails (rate):    385 (77.0%)
+
+Example fails:
+1.0 0.0 0.0 i wouldn't say, given it's a Tuesday, that this was a rough aircraft.
+----
+0.7 0.0 0.3 I wouldn't say, given my history with airplanes, that that crew is hard.
+----
+0.9 0.0 0.1 i can't say, given the time that I've been flying, that that is a hard customer service.
+----
+
+
+negation of neutral with neutral in the middle, should still neutral
+Test cases:      1000
+Test cases run:  500
+Fails (rate):    497 (99.4%)
+
+Example fails:
+1.0 0.0 0.0 I can't say, given my history with airplanes, that I see the customer service.
+----
+1.0 0.0 0.0 I wouldn't say, given my history with airplanes, that this was an American plane.
+----
+0.9 0.0 0.1 I can't say, given my history with airplanes, that this is an international company.
+----
+
+
+
+
+SRL
+
+my opinion is what matters
+Test cases:      8528
+Test cases run:  500
+Fails (rate):    150 (30.0%)
+
+Example fails:
+1.0 0.0 0.0 I think you are good, but some people think you are frustrating.
+----
+1.0 0.0 0.0 I think you are nice, but some people think you are annoying.
+----
+0.0 0.0 1.0 I think you are lame, but I had heard you were great.
+----
+
+
+Q & A: yes
+Test cases:      7644
+Test cases run:  500
+Fails (rate):    15 (3.0%)
+
+Example fails:
+1.0 0.0 0.0 Do I think that aircraft was exciting? Yes
+----
+0.9 0.0 0.1 Do I think that pilot is exciting? Yes
+----
+1.0 0.0 0.0 Do I think this plane is exciting? Yes
+----
+
+
+Q & A: yes (neutral)
+Test cases:      1560
+Test cases run:  500
+Fails (rate):    440 (88.0%)
+
+Example fails:
+1.0 0.0 0.0 Do I think this is a British company? Yes
+----
+0.9 0.0 0.1 Do I think the service was Australian? Yes
+----
+0.0 0.0 1.0 Did we find that aircraft? Yes
+----
+
+
+Q & A: no
+Test cases:      7644
+Test cases run:  500
+Fails (rate):    274 (54.8%)
+
+Example fails:
+1.0 0.0 0.0 Do I think that is a sad flight? No
+----
+1.0 0.0 0.0 Do I think that flight is average? No
+----
+1.0 0.0 0.0 Do I think this is a difficult pilot? No
+----
+
+
+Q & A: no (neutral)
+Test cases:      1560
+Test cases run:  500
+Fails (rate):    500 (100.0%)
+
+Example fails:
+1.0 0.0 0.0 Do I think this is an Australian flight? No
+----
+1.0 0.0 0.0 Do I think this is an Israeli staff? No
+----
+1.0 0.0 0.0 Do I think this was a commercial plane? No
+----
+
+
+
+
