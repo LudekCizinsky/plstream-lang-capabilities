@@ -26,9 +26,9 @@ Fails (rate):    13 (100.0%)
 Example fails:
 0.0 0.0 1.0 American
 ----
-0.0 0.0 1.0 Indian
+0.0 0.0 1.0 find
 ----
-0.0 0.0 1.0 saw
+0.1 0.0 0.9 Israeli
 ----
 
 
@@ -48,11 +48,11 @@ Test cases run:  500
 Fails (rate):    409 (81.8%)
 
 Example fails:
-0.1 0.0 0.9 It is an Israeli airline.
+0.1 0.0 0.9 I saw this flight.
 ----
-0.0 0.0 1.0 This customer service is international.
+0.1 0.0 0.9 That food was Indian.
 ----
-0.0 0.0 1.0 I found the company.
+0.3 0.0 0.7 This was a British staff.
 ----
 
 
@@ -62,16 +62,16 @@ Test cases run:  500
 Fails (rate):    5 (1.0%)
 
 Example fails:
+0.9 0.0 0.1 That was a weird plane.
+0.2 0.0 0.8 That was an amazingly weird plane.
+
+----
 1.0 0.0 0.0 This was a creepy service.
 0.8 0.0 0.2 This was a truly creepy service.
 
 ----
-1.0 0.0 0.0 I regret that pilot.
-0.9 0.0 0.1 I extremely regret that pilot.
-
-----
-1.0 0.0 0.0 This is a creepy service.
-0.0 0.0 1.0 This is an amazingly creepy service.
+0.9 0.0 0.1 That was a hard service.
+0.1 0.0 0.9 That was an amazingly hard service.
 
 ----
 
@@ -87,19 +87,19 @@ Test cases:      500
 Fails (rate):    51 (10.2%)
 
 Example fails:
-0.5 0.5 0.0 @united I just need to get to RIC tonight. I've been in EWR for 24hrs now.
-0.3 0.0 0.7 @united I just need to talk to RIC tonight. I've been in EWR for 24hrs now.
-0.7 0.0 0.3 @united I just need to fly to RIC tonight. I've been in EWR for 24hrs now.
+0.0 0.7 0.3 @united you can read the full story when I submit a case to your team about the pilot of flight 6232 and why we are sleeping in DIA
+0.2 0.0 0.8 @united you can read the full story when I submit a case to your team about the pilot of flight 6232 and why we are sleeping with DIA
+0.1 0.0 0.9 @united you can read his full story when I submit a case to your team about his pilot of flight 6232 and why we are sleeping in DIA
 
 ----
-0.0 0.0 1.0 @SouthwestAir oh my gosh! Going to dm you now! Thank you!
-1.0 0.0 0.0 @SouthwestAir oh my gosh! Going to dm off now! Thank off!
-1.0 0.0 0.0 @SouthwestAir oh my gosh! Going to dm off now! Thank off!
+0.9 0.0 0.1 @united That's still one day over my visa expiring on June 9, which is why I booked my flight on that day.
+0.0 0.9 0.1 @united That's still one day over that visa expiring on June 9, which is why I booked that flight on that day.
+0.0 0.9 0.1 @united That's still one day over your visa expiring on June 9, which is why I booked your flight on that day.
 
 ----
-0.0 1.0 0.0 @SouthwestAir How about auto check in for CP holders? Come on.
-0.9 0.0 0.1 @SouthwestAir How do auto check in for CP holders? Come on.
-1.0 0.0 0.0 @SouthwestAir How about auto check bags for CP holders? Come on.
+0.9 0.0 0.1 @USAirways No thank you. @AmericanAir was responsive &amp; I found alternate travel home.
+0.0 0.0 1.0 @USAirways No thank you. @AmericanAir so responsive &amp; I found alternate travel home.
+0.0 0.0 1.0 @USAirways No thank you. @AmericanAir very responsive &amp; I found alternate travel home.
 
 ----
 
@@ -109,18 +109,18 @@ Test cases:      500
 Fails (rate):    51 (10.2%)
 
 Example fails:
-0.0 0.0 1.0 @united thanks
-0.1 0.0 0.9 @united thanks. I welcome you.
-0.1 0.0 0.9 @united thanks. You are exceptional.
+0.0 0.0 1.0 @SouthwestAir Thanks! Will do
+0.1 0.0 0.9 @SouthwestAir Thanks! Will do. I appreciate you.
+0.1 0.0 0.9 @SouthwestAir Thanks! Will do. You are extraordinary.
 
 ----
-0.0 0.0 1.0 @VirginAmerica thank you! See y'all soon! I'm excited to see the expansion of destinations. Spread those wings!
-0.1 0.0 0.9 @VirginAmerica thank you! See y'all soon! I'm excited to see the expansion of destinations. Spread those wings. I enjoy you.
+0.0 0.0 1.0 @JetBlue trivia contest to win flight. 1 question. RT and Follow &amp; I'll send you answer to enter. http://t.co/AucSYKFUHD via @WSJPlus
+0.1 0.0 0.9 @JetBlue trivia contest to win flight. 1 question. RT and Follow &amp; I'll send you answer to enter. http://t.co/AucSYKFUHD via @WSJPlus. I welcome you.
+0.1 0.0 0.9 @JetBlue trivia contest to win flight. 1 question. RT and Follow &amp; I'll send you answer to enter. http://t.co/AucSYKFUHD via @WSJPlus. I appreciate you.
 
 ----
-0.0 0.0 1.0 @AmericanAir whenever I cheat on you it goes horribly wrong! I promise, I won't stray anymore. I'm talking about you @Delta!
-0.3 0.0 0.7 @AmericanAir whenever I cheat on you it goes horribly wrong! I promise, I won't stray anymore. I'm talking about you @Delta. I welcome you.
-0.3 0.0 0.7 @AmericanAir whenever I cheat on you it goes horribly wrong! I promise, I won't stray anymore. I'm talking about you @Delta. I would fly with you again.
+0.0 0.0 1.0 @AmericanAir Yay, thanks! Appreciate the help, I know it's NUTS right now with the cold and ice!
+0.1 0.0 0.9 @AmericanAir Yay, thanks! Appreciate the help, I know it's NUTS right now with the cold and ice. I value you.
 
 ----
 
@@ -130,18 +130,18 @@ Test cases:      500
 Fails (rate):    66 (13.2%)
 
 Example fails:
-1.0 0.0 0.0 @SouthwestAir can u get me on flt #3768 instead of #2522 rt now
-0.9 0.0 0.1 @SouthwestAir can u get me on flt #3768 instead of #2522 rt now. I regret you.
-0.9 0.0 0.1 @SouthwestAir can u get me on flt #3768 instead of #2522 rt now. You are average.
+1.0 0.0 0.0 @SouthwestAir Hey, friends. When I phone the A-list number your IVR hangs up on me. Multiple times. Not sure how to proceed?
+0.9 0.0 0.1 @SouthwestAir Hey, friends. When I phone the A-list number your IVR hangs up on me. Multiple times. Not sure how to proceed. You are hard.
 
 ----
-1.0 0.0 0.0 @AmericanAir I sent you a DM, can you please help.
-0.9 0.0 0.1 @AmericanAir I sent you a DM, can you please help. I dread you.
-0.9 0.0 0.1 @AmericanAir I sent you a DM, can you please help. I regret you.
+1.0 0.0 0.0 @AmericanAir What's with your baggage handlers calling out at DFW today? No luggage onboard the planes.
+0.9 0.0 0.1 @AmericanAir What's with your baggage handlers calling out at DFW today? No luggage onboard the planes. I regret you.
+0.9 0.0 0.1 @AmericanAir What's with your baggage handlers calling out at DFW today? No luggage onboard the planes. You are weird.
 
 ----
-1.0 0.0 0.0 @united flight arrives 30 minutes early, but then have we to wait for an hour for our bags.
-0.9 0.0 0.1 @united flight arrives 30 minutes early, but then have we to wait for an hour for our bags. You are hard.
+1.0 0.0 0.0 @united Trying to locate passenger that landed 2 hrs ago in @HeathrowAirport UA938. can you assist? Is flight still in customs? PLEASE help
+0.9 0.0 0.1 @united Trying to locate passenger that landed 2 hrs ago in @HeathrowAirport UA938. can you assist? Is flight still in customs? PLEASE help. You are difficult.
+0.9 0.0 0.1 @united Trying to locate passenger that landed 2 hrs ago in @HeathrowAirport UA938. can you assist? Is flight still in customs? PLEASE help. You are hard.
 
 ----
 
@@ -155,18 +155,18 @@ Test cases:      500
 Fails (rate):    37 (7.4%)
 
 Example fails:
-0.0 0.8 0.2 @united @bobwesson fair enough United. everybody is doing the best they can. Although that "slight delay" is turning into a Cancelled Flightlation.
-0.1 0.0 0.9 @united @bobwesson fair enough United. everybody is doing the best they can. Although that "slight delay" is turning into a Cancelled Flightlation. @k50K3W
+0.2 0.8 0.0 @united but we are on All Nippon now (booked by United to replace the one we missed).
+0.3 0.0 0.7 https://t.co/zEJmQW @united but we are on All Nippon now (booked by United to replace the one we missed).
+0.3 0.0 0.7 https://t.co/o6xxR3 @united but we are on All Nippon now (booked by United to replace the one we missed).
 
 ----
-0.9 0.0 0.1 @AmericanAir delayed.....wow
-0.0 0.6 0.4 https://t.co/CLXIlR @AmericanAir delayed.....wow
-0.0 1.0 0.0 https://t.co/44aQp3 @AmericanAir delayed.....wow
+0.0 0.0 1.0 @JetBlue check DM please :)
+0.0 1.0 0.0 @airline  @JetBlue check DM please :)
 
 ----
-0.8 0.0 0.2 @VirginAmerica please add more frequency to PDX Portland
-0.0 0.8 0.2 https://t.co/UMwjO3 @VirginAmerica please add more frequency to PDX Portland
-0.0 0.6 0.4 https://t.co/VWYyx4 @VirginAmerica please add more frequency to PDX Portland
+0.1 0.0 0.9 @JetBlue follow for DM please
+0.1 0.9 0.0 https://t.co/Pw6sNo @JetBlue follow for DM please
+0.0 0.9 0.1 @h6QtXe @JetBlue follow for DM please
 
 ----
 
@@ -176,18 +176,17 @@ Test cases:      500
 Fails (rate):    23 (4.6%)
 
 Example fails:
-0.0 0.7 0.3 @United lounge @ #Heathrow Used by @AirNZUSA http://t.co/6hJucP694l
-0.3 0.0 0.7 @United lounge @ #Heathrow Used by @AirNZUSA http://t.co/6hJucP694l.
+0.2 0.0 0.8 @AmericanAir "Thank you for contacting American. The email address you have written to is an unmonitored account”
+0.0 0.9 0.1 @AmericanAir "Thank you for contacting American. The email address you have written to is an unmonitored account.
 
 ----
-0.9 0.0 0.1 @united flights taking off from IAD this afternoon?
-0.0 0.0 1.0 @united flights taking off from IAD this afternoon
-0.0 0.0 1.0 @united flights taking off from IAD this afternoon.
+0.9 0.0 0.1 @SouthwestAir we checked in right at 24hr mark. Boarding C group with kids ages 6&amp;8 dnt want to be split. What sld we do?
+0.1 0.0 0.9 @SouthwestAir we checked in right at 24hr mark. Boarding C group with kids ages 6&amp;8 dnt want to be split. What sld we do.
+0.1 0.0 0.9 @SouthwestAir we checked in right at 24hr mark. Boarding C group with kids ages 6&amp;8 dnt want to be split. What sld we do
 
 ----
-0.4 0.6 0.0 @JetBlue that is great. But once it gets to Buffalo will it be able to leave and get to JFK? Or there's issues still at Buffalo airport?
-0.9 0.0 0.1 @JetBlue that is great. But once it gets to Buffalo will it be able to leave and get to JFK? Or there's issues still at Buffalo airport
-0.7 0.0 0.3 @JetBlue that is great. But once it gets to Buffalo will it be able to leave and get to JFK? Or there's issues still at Buffalo airport.
+0.1 0.9 0.0 @AmericanAir Hi, can you please ticket my award ticket? The status is "On Request" now. Thanks.
+0.9 0.0 0.1 @AmericanAir Hi, can you please ticket my award ticket? The status is "On Request" now. Thanks
 
 ----
 
@@ -197,16 +196,16 @@ Test cases:      500
 Fails (rate):    19 (3.8%)
 
 Example fails:
-1.0 0.0 0.0 @united your seats are god awful.
-0.0 0.0 1.0 @united your seats are god awufl.
-
-----
-1.0 0.0 0.0 @USAirways that's ok, just know that I'll most likely never book with you again
-0.0 0.0 1.0 @USAirways that's ok, just know that I'll most likely enver book with you again
+0.7 0.0 0.3 @united instead of making  seats smaller/thinner so u can jam more people on a flight,u should concentrate on maint &amp; happy customers
+0.1 0.0 0.9 @united instead of making  seats smaller/thinner so u can jam more people on a flight,u should cnocentrate on maint &amp; happy customers
 
 ----
 0.0 0.0 1.0 @SouthwestAir @AmericanAir y'all are better then @united
 1.0 0.0 0.0 @SouthwestAir @AmericanAir y'all are better the n@united
+
+----
+0.8 0.0 0.2 @USAirways Please hold US1765 for me. Need to get home tonight before weather. Almost there.
+0.3 0.7 0.0 @USAirways Please hold US1765 for me. Nee dto get home tonight before weather. Almost there.
 
 ----
 
@@ -216,16 +215,16 @@ Test cases:      500
 Fails (rate):    30 (6.0%)
 
 Example fails:
-0.0 0.6 0.4 @AmericanAir See photo of B787 scale model &amp; our PN 320008A wheel deflator specified in Chapter 32 of B787 AMM. http://t.co/kfD4WQRkLW
-0.2 0.0 0.8 A@mericanAirS ee photo of B787 scale model &amp; our PN 320008A wheel deflator specified in Chapter 32 of B787 AMM. http://t.co/kfD4WQRkLW
-
-----
-0.0 0.7 0.3 .@united I appreciate you looking. Can you compensate me on anything for my troubles? Still haven't taken off for a 10:30 am flight
-0.2 0.0 0.8 .@united I appreciate you lookin.g Can yo ucompensate me on anything for my troubles? Still haven't taken off for a 10:30 am flight
-
-----
 0.8 0.0 0.2 @USAirways if you've got room on an earlier flight home, why charge me $75 to get on it? Be the hero!
 0.3 0.0 0.7 @USAirways if you've got room on an earlier flight home,w hy charge me $75 ot get on it? Be the hero!
+
+----
+0.1 0.0 0.9 @united she was at the service desk at gate 21, and helped us find a flight to get us to our dest. on time when our flight got Cancelled Flightled
+0.8 0.0 0.2 @united she was at the service deks at gate 21, and helped us find a flight to get us to our dest. on tmie when our flight got Cancelled Flightled
+
+----
+0.1 0.9 0.0 @SouthwestAir please expedite missing bag claim #3526665682. Thanks!
+1.0 0.0 0.0 @SouthwestAir please expedite missin gbag claim #3526665682. Thansk!
 
 ----
 
@@ -236,16 +235,16 @@ Test cases run:  500
 Fails (rate):    12 (2.4%)
 
 Example fails:
-0.0 0.7 0.3 @united you can read the full story when I submit a case to your team about the pilot of flight 6232 and why we are sleeping in DIA
-0.2 0.0 0.8 @united you can read the full story when I submit a case to your team about the pilot of flight 6232 and why we're sleeping in DIA
+0.7 0.0 0.3 @JetBlue I left my apt 10hrs ago to go from Boston to SJC and I'm still NYC. Please bring back the nonstop flight. #jetblueBlues
+0.4 0.6 0.0 @JetBlue I left my apt 10hrs ago to go from Boston to SJC and I am still NYC. Please bring back the nonstop flight. #jetblueBlues
 
 ----
-0.3 0.0 0.7 @SouthwestAir What is the best credit card to use/open to get miles with y'all?
-0.0 0.7 0.3 @SouthwestAir What's the best credit card to use/open to get miles with y'all?
+0.3 0.0 0.7 “@JetBlue: Our fleet's on fleek. http://t.co/BBM6PAbORt” &lt;&lt;Now THAT is fuckin funny. 😂
+0.0 0.5 0.5 “@JetBlue: Our fleet's on fleek. http://t.co/BBM6PAbORt” &lt;&lt;Now That's fuckin funny. 😂
 
 ----
-0.9 0.0 0.1 @united I see several economy plus can you put us in those. We don't have to be seated together
-0.0 0.8 0.2 @united I see several economy plus can you put us in those. We do not have to be seated together
+0.3 0.7 0.0 @JetBlue thanks. I will use the extra time to do some more shopping! Did somebody say duty free?
+0.7 0.0 0.3 @JetBlue thanks. I'll use the extra time to do some more shopping! Did somebody say duty free?
 
 ----
 
@@ -259,19 +258,19 @@ Test cases:      331
 Fails (rate):    8 (2.4%)
 
 Example fails:
-0.7 0.0 0.3 @united yes, David Allan send an email with this number (KMM24999563V99860L0KM) and case#8719519
-0.2 0.8 0.0 @united yes, Joshua Martin send an email with this number (KMM24999563V99860L0KM) and case#8719519
-0.2 0.8 0.0 @united yes, Daniel Barnes send an email with this number (KMM24999563V99860L0KM) and case#8719519
-
-----
 0.3 0.7 0.0 @USAirways I would be on my way but   wether has delayed yet again.. Love the Charlotte ice storm!!  Good luck with mad customers
 0.3 0.0 0.7 @USAirways I would be on my way but   wether has delayed yet again.. Love the Caroline ice storm!!  Good luck with mad customers
 0.3 0.0 0.7 @USAirways I would be on my way but   wether has delayed yet again.. Love the Isabella ice storm!!  Good luck with mad customers
 
 ----
-0.0 0.7 0.3 @JetBlue haha. TY. Do you know what time that lane opens at Logan?
-0.1 0.0 0.9 @JetBlue haha. James. Do you know what time that lane opens at Logan?
-0.2 0.0 0.8 @JetBlue haha. TY. Do you know what time that lane opens at James?
+0.7 0.0 0.3 @united yes, David Allan send an email with this number (KMM24999563V99860L0KM) and case#8719519
+0.2 0.8 0.0 @united yes, Joshua Martin send an email with this number (KMM24999563V99860L0KM) and case#8719519
+0.2 0.8 0.0 @united yes, Daniel Barnes send an email with this number (KMM24999563V99860L0KM) and case#8719519
+
+----
+0.4 0.6 0.0 @SouthwestAir @Vindictive_tK Larry David works for southwest?
+0.7 0.0 0.3 @SouthwestAir @Vindictive_tK Christopher Cruz works for southwest?
+0.7 0.0 0.3 @SouthwestAir @Vindictive_tK Daniel Johnson works for southwest?
 
 ----
 
@@ -282,18 +281,18 @@ Test cases run:  500
 Fails (rate):    32 (6.4%)
 
 Example fails:
-1.0 0.0 0.0 @united just landed. Might want to check flight 304 plane from Houston. That sound was during takeoff &amp; landing http://t.co/QKquRagGoO
-0.4 0.6 0.0 @united just landed. Might want to check flight 304 plane from Gardena. That sound was during takeoff &amp; landing http://t.co/QKquRagGoO
-0.5 0.5 0.0 @united just landed. Might want to check flight 304 plane from Cary. That sound was during takeoff &amp; landing http://t.co/QKquRagGoO
+0.5 0.5 0.0 @AmericanAir I need to get from Albuquerque, NM, USA, to Cebu, Philippines. I'm providing educational help for 800 kids. Can you help me?
+0.7 0.0 0.3 @AmericanAir I need to get from Albuquerque, NM, USA, to Cebu, Timor-Leste. I'm providing educational help for 800 kids. Can you help me?
 
 ----
-0.7 0.0 0.3 @United Adopting 2 yr old child from Ethiopia. Flying from ADD to GRR on 2/28.  Need to add child to reservation and get costs.  Help!  Thx
-0.4 0.6 0.0 @United Adopting 2 yr old child from Palau. Flying from ADD to GRR on 2/28.  Need to add child to reservation and get costs.  Help!  Thx
-0.5 0.5 0.0 @United Adopting 2 yr old child from Hong Kong SAR. Flying from ADD to GRR on 2/28.  Need to add child to reservation and get costs.  Help!  Thx
+0.3 0.0 0.7 @SouthwestAir thanks connection thru Nashville have A1 boarding pass get to Dallas gate boarding 40 min before flt get end of B group
+0.0 0.6 0.4 @SouthwestAir thanks connection thru Nashville have A1 boarding pass get to Fall River gate boarding 40 min before flt get end of B group
+0.0 0.5 0.5 @SouthwestAir thanks connection thru Nashville have A1 boarding pass get to San Ramon gate boarding 40 min before flt get end of B group
 
 ----
-1.0 0.0 0.0 @USAirways So we got her home, now we just need her bag. Is there a direct desk number for Savannah?
-0.5 0.5 0.0 @USAirways So we got her home, now we just need her bag. Is there a direct desk number for Stillwater?
+0.3 0.7 0.0 @united Delayed more and more these days. MCO &gt; IAD. Fingers crossed I make my connection home to Albany. #united1K
+0.3 0.0 0.7 @united Delayed more and more these days. MCO &gt; IAD. Fingers crossed I make my connection home to Victoria. #united1K
+0.9 0.0 0.1 @united Delayed more and more these days. MCO &gt; IAD. Fingers crossed I make my connection home to Miami. #united1K
 
 ----
 
@@ -304,19 +303,19 @@ Test cases run:  500
 Fails (rate):    11 (2.2%)
 
 Example fails:
-0.3 0.7 0.0 @united I would take the $500 voucher you offered for MISCOUNTING THE # OF SEATS ON YOUR PLANE but that means I would have to fly you again
-0.7 0.0 0.3 @united I would take the $597 voucher you offered for MISCOUNTING THE # OF SEATS ON YOUR PLANE but that means I would have to fly you again
-0.7 0.0 0.3 @united I would take the $513 voucher you offered for MISCOUNTING THE # OF SEATS ON YOUR PLANE but that means I would have to fly you again
+0.0 0.6 0.4 @united Flt 359 lax to EWR. Your pilot bragged about getting to EWR early only to wait 20 min for a jetway driver. Thanks United!
+0.3 0.0 0.7 @united Flt 343 lax to EWR. Your pilot bragged about getting to EWR early only to wait 20 min for a jetway driver. Thanks United!
+0.3 0.0 0.7 @united Flt 416 lax to EWR. Your pilot bragged about getting to EWR early only to wait 20 min for a jetway driver. Thanks United!
 
 ----
-0.7 0.0 0.3 @SouthwestAir Just go ahead and start the scavenger hunt after 5 pm today when work is over ;) #DestinationDragons
-0.5 0.5 0.0 @SouthwestAir Just go ahead and start the scavenger hunt after 6 pm today when work is over ;) #DestinationDragons
-0.5 0.5 0.0 @SouthwestAir Just go ahead and start the scavenger hunt after 6 pm today when work is over ;) #DestinationDragons
+0.0 0.5 0.5 @JetBlue looking to for low rates bos to Vegas in Late Flight June for 3 kids and myself for a sporting event. Any deals or breaks
+0.3 0.0 0.7 @JetBlue looking to for low rates bos to Vegas in Late Flight June for 4 kids and myself for a sporting event. Any deals or breaks
+0.3 0.0 0.7 @JetBlue looking to for low rates bos to Vegas in Late Flight June for 4 kids and myself for a sporting event. Any deals or breaks
 
 ----
-0.7 0.0 0.3 @JetBlue how about free wifi on flt 1254 out of PBI to make up for 2.5 hr delay? Treat us right.
-0.3 0.7 0.0 @JetBlue how about free wifi on flt 1504 out of PBI to make up for 2.5 hr delay? Treat us right.
-0.3 0.7 0.0 @JetBlue how about free wifi on flt 1285 out of PBI to make up for 2.5 hr delay? Treat us right.
+0.7 0.0 0.3 @SouthwestAir Flight 2646.  Four hours in the plane on the ground at BWI.
+0.0 0.9 0.1 @SouthwestAir Flight 2400.  Four hours in the plane on the ground at BWI.
+0.3 0.7 0.0 @SouthwestAir Flight 2434.  Four hours in the plane on the ground at BWI.
 
 ----
 
@@ -331,18 +330,18 @@ Test cases run:  500
 Fails (rate):    288 (57.6%)
 
 Example fails:
-1.0 0.0 0.0 Isaiah is a black dog.
-0.0 0.6 0.4 Isaiah is a hispanic dog.
-0.1 0.0 0.9 Isaiah is an asian dog.
+0.0 0.5 0.5 Brian is a black Latino.
+0.0 0.0 1.0 Brian is a hispanic Latino.
+0.3 0.0 0.7 Brian is a white Latino.
 
 ----
-0.0 0.5 0.5 Anthony is a black American.
-0.0 0.0 1.0 Anthony is a hispanic American.
-0.3 0.0 0.7 Anthony is a white American.
+0.9 0.0 0.1 Isaac is a black dog.
+0.0 0.0 1.0 Isaac is an asian dog.
+0.3 0.0 0.7 Isaac is a hispanic dog.
 
 ----
-0.0 0.9 0.1 Destiny is a black accent.
-0.2 0.0 0.8 Destiny is an asian accent.
+0.3 0.0 0.7 Daniel is a black community.
+0.0 0.5 0.5 Daniel is a white community.
 
 ----
 
@@ -353,19 +352,19 @@ Test cases run:  500
 Fails (rate):    473 (94.6%)
 
 Example fails:
-0.1 0.0 0.9 Noah is an asexual lesbian.
-1.0 0.0 0.0 Noah is a cisgender lesbian.
-0.0 0.9 0.1 Noah is a transsexual lesbian.
+0.0 0.0 1.0 Nicole is an asexual thinker.
+0.5 0.5 0.0 Nicole is a homosexual thinker.
+0.8 0.0 0.2 Nicole is a cisgender thinker.
 
 ----
-0.1 0.0 0.9 Heather is an asexual female.
-0.4 0.6 0.0 Heather is a homosexual female.
-0.9 0.0 0.1 Heather is a cisgender female.
+0.8 0.0 0.2 Cameron is an asexual issue.
+0.0 0.7 0.3 Cameron is a queer issue.
+0.0 0.7 0.3 Cameron is a non-binary issue.
 
 ----
-0.1 0.0 0.9 Olivia is an asexual girl.
-0.9 0.0 0.1 Olivia is a cisgender girl.
-0.9 0.0 0.1 Olivia is a homosexual girl.
+0.2 0.0 0.8 Tara is an asexual queer.
+0.0 1.0 0.0 Tara is a cisgender queer.
+0.7 0.0 0.3 Tara is a homosexual queer.
 
 ----
 
@@ -376,17 +375,18 @@ Test cases run:  500
 Fails (rate):    418 (83.6%)
 
 Example fails:
-0.0 0.9 0.1 Brian is a Christian sect.
-0.2 0.0 0.8 Brian is a Jain sect.
-0.1 0.0 0.9 Brian is a Roman Catholic sect.
+0.1 0.0 0.9 Michelle is a Christian speaker.
+0.2 0.8 0.0 Michelle is a Jew speaker.
+0.7 0.0 0.3 Michelle is an Atheist speaker.
 
 ----
-0.1 0.0 0.9 Jackson is a Christian feminist.
-0.8 0.0 0.2 Jackson is a Jew feminist.
+0.1 0.0 0.9 Maria is a Christian cleric.
+0.9 0.0 0.1 Maria is an Atheist cleric.
+0.0 0.9 0.1 Maria is a Jew cleric.
 
 ----
-0.0 0.0 1.0 Samuel is a Christian engineer.
-0.9 0.0 0.1 Samuel is an Atheist engineer.
+0.8 0.0 0.2 Kristen is a Christian vegetarian.
+0.2 0.8 0.0 Kristen is an Eastern Orthodox vegetarian.
 
 ----
 
@@ -397,17 +397,17 @@ Test cases run:  500
 Fails (rate):    36 (7.2%)
 
 Example fails:
-0.0 0.6 0.4 Adam is a Chinese Jew.
-0.3 0.0 0.7 Adam is an Egyptian Jew.
-0.2 0.0 0.8 Adam is a Philippine Jew.
+0.9 0.0 0.1 Kristen is a Chinese vegetarian.
+0.5 0.5 0.0 Kristen is an American vegetarian.
 
 ----
-0.3 0.0 0.7 Aiden is a Chinese name.
-0.0 0.5 0.5 Aiden is a Japanese name.
+1.0 0.0 0.0 Leslie is a Chinese vegetarian.
+0.1 0.9 0.0 Leslie is a Nigerian vegetarian.
 
 ----
-0.2 0.0 0.8 Daniel is a Chinese nationalist.
-0.0 0.7 0.3 Daniel is a Mexican nationalist.
+0.3 0.7 0.0 Christian is a Chinese Kurd.
+0.1 0.0 0.9 Christian is a Bangladeshi Kurd.
+0.7 0.0 0.3 Christian is a Russian Kurd.
 
 ----
 
@@ -422,11 +422,11 @@ Test cases run:  500
 Fails (rate):    55 (11.0%)
 
 Example fails:
-0.1 0.0 0.9 I used to enjoy this airline, even though now I abhor it.
+0.1 0.0 0.9 I dislike this airline, but I used to appreciate it.
 ----
 0.0 0.0 1.0 I regret this airline, but I used to recommend it.
 ----
-0.1 0.0 0.9 I think this airline is weird, but in the past I thought it was nice.
+0.1 0.0 0.9 I hate this airline, but I used to value it.
 ----
 
 
@@ -437,12 +437,12 @@ After filtering: 11 (2.2%)
 Fails (rate):    2 (18.2%)
 
 Example fails:
-0.9 0.0 0.1 that was a difficult pilot.
-1.0 0.0 0.0 I used to think that was a difficult pilot.
-
-----
 0.9 0.0 0.1 that is a difficult airline.
 1.0 0.0 0.0 I used to think that is a difficult airline.
+
+----
+0.9 0.0 0.1 that was a difficult pilot.
+1.0 0.0 0.0 I used to think that was a difficult pilot.
 
 ----
 
@@ -469,11 +469,11 @@ Test cases run:  500
 Fails (rate):    13 (2.6%)
 
 Example fails:
+1.0 0.0 0.0 I can't say I abhor this customer service.
+----
 0.7 0.0 0.3 It wasn't an average food.
 ----
-1.0 0.0 0.0 I can't say I abhor this company.
-----
-0.9 0.0 0.1 That pilot is not average.
+0.9 0.0 0.1 That aircraft isn't average.
 ----
 
 
@@ -483,11 +483,11 @@ Test cases run:  500
 Fails (rate):    477 (95.4%)
 
 Example fails:
-0.9 0.0 0.1 It is not an international plane.
+1.0 0.0 0.0 It wasn't an American service.
 ----
-0.8 0.0 0.2 That was not an American aircraft.
+1.0 0.0 0.0 I don't think I find that pilot.
 ----
-0.8 0.0 0.2 I would never say I see the service.
+0.9 0.0 0.1 This isn't an international plane.
 ----
 
 
@@ -503,11 +503,11 @@ Test cases run:  500
 Fails (rate):    36 (7.2%)
 
 Example fails:
-0.7 0.0 0.3 I thought that cabin crew would be difficult, but it wasn't.
+0.8 0.0 0.2 I thought that aircraft would be frustrating, but it wasn't.
 ----
-0.8 0.0 0.2 I thought that food would be average, but it wasn't.
+0.7 0.0 0.3 I thought this company would be poor, but it wasn't.
 ----
-0.7 0.0 0.3 I thought this staff would be annoying, but it was not.
+0.8 0.0 0.2 I thought that flight would be average, but it wasn't.
 ----
 
 
@@ -517,11 +517,11 @@ Test cases run:  500
 Fails (rate):    389 (77.8%)
 
 Example fails:
-0.9 0.0 0.1 I thought that aircraft would be commercial, but it wasn't.
+1.0 0.0 0.0 I thought I would find the company, but I didn't.
 ----
-0.7 0.0 0.3 I thought that cabin crew would be Australian, but it was not.
+1.0 0.0 0.0 I thought I would find the airline, but I didn't.
 ----
-0.9 0.0 0.1 I thought the customer service would be Israeli, but it was not.
+0.9 0.0 0.1 I thought the food would be Italian, but it was not.
 ----
 
 
@@ -531,11 +531,11 @@ Test cases run:  500
 Fails (rate):    151 (30.2%)
 
 Example fails:
-0.1 0.0 0.9 I can't say, given all that I've seen over the years, that that seat is brilliant.
+0.0 0.6 0.4 I wouldn't say, given that I am from Brazil, that that flight was adorable.
 ----
-0.2 0.8 0.0 I wouldn't say, given the time that I've been flying, that that seat was beautiful.
+0.2 0.8 0.0 I wouldn't say, given that I am from Brazil, that that was an adorable plane.
 ----
-0.2 0.0 0.8 I can't say, given all that I've seen over the years, that that was an amazing crew.
+0.2 0.0 0.8 I can't say, given that I am from Brazil, that this aircraft is excellent.
 ----
 
 
@@ -545,11 +545,11 @@ Test cases run:  500
 Fails (rate):    385 (77.0%)
 
 Example fails:
-1.0 0.0 0.0 i wouldn't say, given it's a Tuesday, that this was a rough aircraft.
+1.0 0.0 0.0 i wouldn't say, given it's a Tuesday, that the was a rough flight.
 ----
-0.7 0.0 0.3 I wouldn't say, given my history with airplanes, that that crew is hard.
+0.9 0.0 0.1 I don't think, given it's a Tuesday, that the airline was average.
 ----
-0.9 0.0 0.1 i can't say, given the time that I've been flying, that that is a hard customer service.
+1.0 0.0 0.0 i wouldn't say, given all that I've seen over the years, that this is a weird staff.
 ----
 
 
@@ -559,9 +559,9 @@ Test cases run:  500
 Fails (rate):    497 (99.4%)
 
 Example fails:
-1.0 0.0 0.0 I can't say, given my history with airplanes, that I see the customer service.
+1.0 0.0 0.0 I don't think, given the time that I've been flying, that the is an Indian food.
 ----
-1.0 0.0 0.0 I wouldn't say, given my history with airplanes, that this was an American plane.
+1.0 0.0 0.0 I don't think, given all that I've seen over the years, that that is an Israeli food.
 ----
 0.9 0.0 0.1 I can't say, given my history with airplanes, that this is an international company.
 ----
@@ -577,11 +577,11 @@ Test cases run:  500
 Fails (rate):    150 (30.0%)
 
 Example fails:
-1.0 0.0 0.0 I think you are good, but some people think you are frustrating.
+0.3 0.7 0.0 I think you are hard, some people think you are perfect.
 ----
-1.0 0.0 0.0 I think you are nice, but some people think you are annoying.
+1.0 0.0 0.0 I appreciate you, but people abhor you.
 ----
-0.0 0.0 1.0 I think you are lame, but I had heard you were great.
+0.0 0.0 1.0 I think you are creepy, but I had heard you were sweet.
 ----
 
 
@@ -591,11 +591,11 @@ Test cases run:  500
 Fails (rate):    15 (3.0%)
 
 Example fails:
+1.0 0.0 0.0 Do I think this staff was exciting? Yes
+----
 1.0 0.0 0.0 Do I think that aircraft was exciting? Yes
 ----
-0.9 0.0 0.1 Do I think that pilot is exciting? Yes
-----
-1.0 0.0 0.0 Do I think this plane is exciting? Yes
+1.0 0.0 0.0 Do I think this aircraft was exciting? Yes
 ----
 
 
@@ -605,11 +605,11 @@ Test cases run:  500
 Fails (rate):    440 (88.0%)
 
 Example fails:
-1.0 0.0 0.0 Do I think this is a British company? Yes
+0.1 0.0 0.9 Do I think it was an American seat? Yes
 ----
-0.9 0.0 0.1 Do I think the service was Australian? Yes
+0.0 0.0 1.0 Do I think it is an American seat? Yes
 ----
-0.0 0.0 1.0 Did we find that aircraft? Yes
+0.9 0.0 0.1 Do I think this was an Indian crew? Yes
 ----
 
 
@@ -619,11 +619,11 @@ Test cases run:  500
 Fails (rate):    274 (54.8%)
 
 Example fails:
-1.0 0.0 0.0 Do I think that is a sad flight? No
+1.0 0.0 0.0 Do I think this pilot is awful? No
 ----
-1.0 0.0 0.0 Do I think that flight is average? No
+1.0 0.0 0.0 Do I think the company is terrible? No
 ----
-1.0 0.0 0.0 Do I think this is a difficult pilot? No
+1.0 0.0 0.0 Do I think that is a boring seat? No
 ----
 
 
@@ -633,11 +633,11 @@ Test cases run:  500
 Fails (rate):    500 (100.0%)
 
 Example fails:
-1.0 0.0 0.0 Do I think this is an Australian flight? No
+1.0 0.0 0.0 Do I think it was a British pilot? No
 ----
-1.0 0.0 0.0 Do I think this is an Israeli staff? No
+1.0 0.0 0.0 Do I think it is an international flight? No
 ----
-1.0 0.0 0.0 Do I think this was a commercial plane? No
+1.0 0.0 0.0 Do I think that was a British customer service? No
 ----
 
 
