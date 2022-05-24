@@ -57,7 +57,7 @@ Finally, with all the dependencies installed in your active virtual environment,
     <td align="center"><a href="https://github.com/LudekCizinsky"><img src="https://github.com/LudekCizinsky.png?size=100" width="100px;" alt=""/><br /><sub><b>Ludek Cizinsky</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/jonas-mika"><img src="https://github.com/jonas-mika.png?size=100" width="100px;" alt=""/><br /><sub><b>Jonas-Mika Senghaas</b></sub></a><br /></td>
     <td align="center"><a href="https://github.com/lukyrasocha"><img src="https://github.com/lukyrasocha.png?size=100" width="100px;" alt=""/><br /><sub><b>Lukas Rasocha</b></sub></a><br /></td>
-    <td align="center"><a href="https://github.com/IbenH"><img src="https://www.facebook.com/photo/?fbid=1368561793173156&set=a.151233234906024" width="100px;" alt=""/><br /><sub><b>Iben Huse</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/IbenH"><img src="https://scontent-arn2-1.xx.fbcdn.net/v/t31.18172-8/14188125_1368561793173156_2247276646324128922_o.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=lphH7XkJDNMAX_hNnaF&_nc_ht=scontent-arn2-1.xx&oh=00_AT8UDm-bDNWs0ui4xa9u8TM89T-8L7OwQkjVTvkgQc9TPA&oe=62B38B85" width="100px;" alt=""/><br /><sub><b>Iben Huse</b></sub></a><br /></td>
 
   </tr>
 </table>
