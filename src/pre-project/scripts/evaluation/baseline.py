@@ -3,7 +3,6 @@ from sklearn.metrics import accuracy_score, f1_score, make_scorer
 from sklearn.model_selection import cross_val_score
 from sklearn.model_selection import StratifiedKFold
 from scripts.baseline import MajorityClass, LogisticRegression
-from scripts.feature_ext import label_encode
 from scripts.utils import save_model
 import datetime
 import numpy as np
