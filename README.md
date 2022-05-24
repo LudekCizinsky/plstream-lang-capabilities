@@ -1,10 +1,29 @@
-## About project
-In this project, we compared language capabilities of [PLstream](https://arxiv.org/pdf/2203.12368v1.pdf), unsupervised ML framework for polarity labelling of massive data streams, to state-of-the-art supervised classification methods such as [Bert](https://arxiv.org/abs/1810.04805). Language capabilities were tested using predefined tests for sentiment classification models which were introduced in [Checklist paper](https://arxiv.org/abs/2005.04118).
+## About 
 
+This repository stores the source code for the
+*Second Year Project* (Introduction to Natural
+Language Processing and Deep Learning) at the 
+IT University of Copenhagen. 
 
-## Reproduce results
+Within the project we put
+[PLStream](https://arxiv.org/pdf/2203.12368v1.pdf)
+, a novel framework for fast polarity labelling of
+massive data streams, to a test by analysing its
+linguistic capabilities through [CheckList](https://arxiv.org/abs/2005.04118),
+a general-purpose framework facilitating
+comprehensive testing of NLP models. The results
+are compared to two state-of-the art supervised
+models. Our analysis reveals shortcomings in
+PLStream’s overall ability to understand and learn
+from language - especially regarding not
+understanding contextual information and learning
+biases from training data
+
+## Reproducing Results
+
 ### Create Virtual Environment
-To reproduce our results, it is essential that you use virtual environment. If
+
+To reproduce our results, it is essential that you use a virtual environment. If
 you are not familiar with virtual environment, then we provided a small
 tutorial below which assumes that you have python (>=3.3) installed. Otherwise,
 you can skip this part.
@@ -47,6 +66,7 @@ pip install -r requirements.txt
 ```
 
 ### Get the results
+
 Finally, with all the dependencies installed in your active virtual environment, you can go to [project](src/project) folder and see instructions on how to reproduce results reported in our [report](). In addition, you can also inspect our [pre-project](src/pre-project) folder where you can find information about our work done before the actual project. (e.g. generating test cases with [Checklist framework](https://github.com/marcotcr/checklist)).
 
 
