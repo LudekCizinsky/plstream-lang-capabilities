@@ -2,9 +2,10 @@
 # script to generate, save and evaluate difficult cases for
 # out baseline classifier
 from scripts.utils import output, working_on, finished
-output('Loading Modules')
-
 from scripts.utils import load_model, get_data, get_encodings
+
+import nltk
+nltk.download('omw-1.4')
 
 import os
 import json
@@ -13,12 +14,12 @@ import checklist
 import argparse
 import numpy as np
 import warnings
+from timeit import default_timer as timer
 from checklist.editor import Editor
 from checklist.perturb import Perturb
 from checklist.test_types import MFT, INV, DIR
 from checklist.test_suite import TestSuite
 from checklist.expect import Expect
-from timeit import default_timer as timer
 from sklearn.metrics import accuracy_score, f1_score, classification_report
 import re
 
@@ -109,10 +110,8 @@ def prank_test(n):
 
   return pranks, sentiment
 
-def main():
-  parser = argparse.ArgumentParser()
-  parser.add_argument('-L','--load', action='store_true', help='load difficult cases otherwise, generate them')
-  args = parser.parse_args()  
+def create_hard_tests(args):
+
   LOAD = args.load
 
   total = timer()
@@ -126,7 +125,7 @@ def main():
     X_stars, y_stars = remove_stars(25)
     X_prank, y_prank =  prank_test(25)
 
-    finished('Generating Difficult Cases', timer() - start)
+    finished('\nGenerating Difficult Cases', timer() - start)
 
     TESTS = {
       'negation (not + pos_adj)': (X_mft1, y_mft1),
@@ -146,7 +145,7 @@ def main():
         difficult_cases.append(case)
 
     start = working_on('Save Difficult Cases')
-    path = 'data/difficult_cases'
+    path = 'results/custom_difficult_cases'
     os.makedirs(path) if not os.path.exists(path) else None
     with open(f"{path}/difficult_cases.json", "w") as f:
       tmp = [json.dumps(case) for case in difficult_cases]
@@ -159,7 +158,8 @@ def main():
 
   else:
     difficult_cases = []
-    with open('data/difficult_cases/difficult_cases.json', 'r') as f:
+    path = 'results/custom_difficult_cases'
+    with open(f'{path}/difficult_cases.json', 'r') as f:
       for line in f:
         difficult_cases.append(json.loads(line))
   
@@ -200,11 +200,6 @@ def main():
     pred = model.predict(X[mask])
     print(f"Accuracy Score ({category}): {accuracy_score(y[mask], pred)}")
   
-    
-
-
-
-
   finished('Evaluating Baseline Performance', timer() - start)
   
   # finished entire pipeline

@@ -2,8 +2,6 @@
 # script to extract the analyse the wrong predictions of the
 # baseline model
 from scripts.utils import output, working_on, finished
-output('Loading Modules')
-
 from scripts.utils import get_data, get_encodings, load_model
 from scripts.baseline import LogisticRegression
 
@@ -14,7 +12,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix
 
-def main():
+def identify_mispredictions():
   # loading data
   total = timer()
   start = working_on('Loading Train and Dev Data')
@@ -32,14 +30,6 @@ def main():
 
   finished('Loading Train and Dev Data', timer() - start)
 
-  # scale data
-  # start = working_on('Scaling Data')
-  # scaler = StandardScaler(with_mean=False)
-  # scaler.fit(X_train)
-  # X_train = scaler.transform(X_train)
-  # X_dev = scaler.transform(X_dev)
-  # finished('Scaling Data', timer()-start)
-
   # logistic regression baseline
   start = working_on('Predicting on Validation Split')
   model = load_model('data/models/logistic_regression.pkl')
@@ -52,7 +42,7 @@ def main():
 
   # saving difficult cases
   start = working_on('Finding Mispredictions')
-  path = 'data/mispredictions'
+  path = 'results/mispredictions'
   os.makedirs(path) if not os.path.exists(path) else None
   with open(f"{path}/mispredictions.txt", "w") as outfile:
     for i in range(len(y_dev)):
@@ -65,5 +55,3 @@ def main():
 
   finished('Entire Difficult Cases Pipeline', timer()-total)
 
-if __name__ == "__main__":
-  main()
