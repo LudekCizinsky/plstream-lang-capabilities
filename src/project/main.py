@@ -70,12 +70,11 @@ def main():
     finished('Format PLStream Training Data', timer() - s)
 
   # train plstream on this data
-  if args.train_plstream:
-    s = working_on('Checklist PLStream')
-    plstream(PYTHON_PATH,
-        data_path="data/final.csv", 
-        train=True)
-    finished('Checklist PLStream', timer() - s)
+  s = working_on('Checklist PLStream')
+  plstream(PYTHON_PATH,
+      data_path="data/final.csv", 
+      train=args.train_plstream)
+  finished('Checklist PLStream', timer() - s)
 
   finished('Entire Pipeline', timer() - total)
 
