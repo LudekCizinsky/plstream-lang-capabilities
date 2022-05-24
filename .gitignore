@@ -132,7 +132,8 @@ dmypy.json
 # pyre type checker
 .pyre/
 
-# personal runner located at src/
+# Local custom files to be ignored
+keeplocal/*
 runner.py
 train.csv
 output
