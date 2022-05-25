@@ -1,5 +1,5 @@
-# David vs Goliath: Can PLStream surprise?
-## Comparative study of language capabilities between `PLStream` and supervised state-of-the-art models using `CheckList`
+## David vs Goliath: Can PLStream surprise?
+### Comparative study of language capabilities between `PLStream` and supervised state-of-the-art models using `CheckList`
 
 ## About 
 

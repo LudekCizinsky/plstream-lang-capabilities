@@ -51,8 +51,7 @@ baseline model:
   from sklearn. The best model achieved cross
   validated (5 folds) F1 score: 0.94
 
-### Creating custom difficult cases and baseline
-model evaluation 
+### Creating custom difficult cases and baseline model evaluation 
 
 First, to see how we have
 produced [difficult
