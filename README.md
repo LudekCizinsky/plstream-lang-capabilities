@@ -21,21 +21,33 @@ biases from training data
 
 ## Reproducing Results
 
-### Create Virtual Environment
+Detailed information of additional installations,
+downloads of data and which scripts to run is
+located in the README's in the `src/pre-project`
+and `src/project` folders. Both guides, however,
+assume the same Python virtual environment. Follow
+the below steps to set-up the project with the
+correct python versions and dependencies in the
+right versions. 
 
-To reproduce our results, it is essential that you use a virtual environment. If
-you are not familiar with virtual environment, then we provided a small
-tutorial below which assumes that you have python (>=3.3) installed. Otherwise,
-you can skip this part.
+*Feel free to use your preferred package manager*
+(`conda`/ `venv`/ `pyenv`)
 
-First, navigate to the folder where you want to store your virtual environment.
-(usually one has a defined folder outside of the project root for this purpose). Then run the following command (do not forget the change thee variable in square brackets):
+### `venv`: Create Virtual Environment 
+
+First, navigate to the folder where you want to
+store your virtual environment. (usually one has
+a defined folder outside of the project root for
+this purpose). Then run the following command (do
+not forget the change thee variable in square
+brackets):
 
 ```
 python3 -m venv [name of venv]
 ```
 
-Now, you can activate the virtual environment through the command (assuming you are in the
+Now, you can activate the virtual environment
+through the command (assuming you are in the
 folder where you ran the above command): 
 
 ```
@@ -51,23 +63,72 @@ deactivate
 Note that this one of the ways how you can manage your virtual environments, for more info,
 you can read this [article](https://realpython.com/python-virtual-environments-a-primer/).
 
-### Install requirements 
 
-First, make sure your pip is updated:
+Next, we download the dependencies in the virtual
+environment. First, make sure your pip is updated:
 
 ```
 pip install --upgrade pip
 ```
 
-Then, run the following command from the root of the cloned directory to install all dependencies:
+Then, run the following command from the root of
+the cloned directory to install all dependencies:
     
 ```
 pip install -r requirements.txt
 ```
 
+You are all set!
+
+### Create Virtual Environment (`conda`)
+
+You can create a virtual environment within in
+`conda` (this assumes you have installed either
+[Miniconda](https://docs.conda.io/en/latest/miniconda.html) or [Anaconda](https://www.anaconda.com/). 
+First, create the new virtual environment
+including Python 3.7 through 
+
+```bash
+conda create --name plstream python=3.7
+```
+
+Activate the environment 
+
+```
+conda activate plstream
+```
+
+Check that the `PYTHONPATH` and `PIP` is correctly
+udpated by running 
+
+```bash
+which python
+which pip
+```
+
+The output of both should point to a path
+including the virtual environments name `plstream`
+in it.
+
+Lastly, install the requirements from
+`requirements.txt`
+
+`pip install -r requirements.txt`
+
+You are all set!
+
 ### Get the results
 
-Finally, with all the dependencies installed in your active virtual environment, you can go to [project](src/project) folder and see instructions on how to reproduce results reported in our [report](). In addition, you can also inspect our [pre-project](src/pre-project) folder where you can find information about our work done before the actual project. (e.g. generating test cases with [Checklist framework](https://github.com/marcotcr/checklist)).
+Finally, with all the dependencies installed in
+your active virtual environment, you can go to
+[project](src/project) folder and see instructions
+on how to reproduce results reported in our
+[report](). In addition, you can also inspect our
+[pre-project](src/pre-project) folder where you
+can find information about our work done before
+the actual project. (e.g. generating test cases
+with [Checklist
+framework](https://github.com/marcotcr/checklist)).
 
 
 ## Contributors
