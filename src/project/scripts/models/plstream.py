@@ -435,8 +435,8 @@ def plstream(python_path, data_path, train=True):
   df = pd.read_csv("data/raw/train.csv", index_col=False)
 
   # store reviews and label in lists
-  true_label = list(df.label)
-  yelp_review = list(df.review)
+  true_label = list(df.iloc[:,0])
+  yelp_review = list(df.iloc[:,1])
 
   # create data stream of list of tuples
   data_stream = []
@@ -500,7 +500,7 @@ def plstream(python_path, data_path, train=True):
 
   data = data[["prediction", "prob_neg", "prob_neu", "prob_pos"]]
   print('> Wrote Predictions to predictions/plstream')
-  data.to_csv(f"predictions/plstream_{TRAINING_SIZE}", 
+  data.to_csv(f"results/checklist_predictions/plstream_{TRAINING_SIZE}", 
       sep=" ", 
       index=False, 
       header=False)
