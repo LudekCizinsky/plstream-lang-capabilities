@@ -105,7 +105,7 @@ If this is the first time running this project,
 activate all flags:
 
 ```bash
-python main.py -F -T -R
+python main.py -T -R
 ```
 
 This is, what the flags are doing:
@@ -115,18 +115,9 @@ Control Runflow of main.py
 
 optional arguments:
   -h, --help                      show this help message and exit
-  -F, --format-plstream-train     Format PLStream Training Data and write to
-                                  data/processed/final.csv
   -T, --train-plstream            Train PLStream
   -R, --reproduce-checklist       Reproduce the Checklist Paper Results
 ```
-
-Use the `-F` flag, in order to concatenate the
-`data/rawtrain.csv` (Yelp Review Dataset) with the
-`data/raw/checklist-tests.txt` (CheckList Test)
-and save it in `data/processed/final.csv`. This
-data set is required for the training and
-evaluation of PLStream to work. 
 
 Use the `-T` flag to train PLStream. By default,
 the PL100 model (trained on 100.000 review from
