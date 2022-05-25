@@ -20,7 +20,7 @@ import checklist
 from checklist.test_suite import TestSuite
 
 # global envs
-SUITE_PATH = 'checklist_testsuite/sentiment_suite.pkl'
+SUITE_PATH = 'data/checklist_testsuite/sentiment_suite.pkl'
 PRED_PATH = 'results/checklist_predictions'
 PYTHON_PATH = subprocess.check_output(
     "which python3", shell=True).strip().decode('utf-8')
@@ -28,13 +28,6 @@ PYTHON_PATH = subprocess.check_output(
 # parser
 parser = argparse.ArgumentParser(
     description='Control Runflow of main.py')
-
-parser.add_argument(
-    '-F',
-    '--format-plstream-train',
-    action='store_true',
-      help='Format PLStream Training Data and\
-      write to data/processed/final.csv')
 
 parser.add_argument(
     '-T',
@@ -53,27 +46,13 @@ args = parser.parse_args()
 def main():
   total = timer() # global timer
 
-  # format checklist pl-stream
-  if args.format_plstream_train:
-    s = working_on('Format PLStream Training Data')
-
-    # preprocess testing data into format of
-    shutil.copyfile("data/raw/train.csv", "data/processed/final.csv")
-
-    with open("data/processed/final.csv", "a") as final:
-      with open("data/raw/checklist-tests.txt", "r") as tests:
-        for test in tests:
-          test = test.strip().replace('"', '')
-          t = f'0,"{test}"\n'
-          final.write(t)
-
-    finished('Format PLStream Training Data', timer() - s)
-
   # train plstream on this data
-  plstream(PYTHON_PATH,
-      data_path="data/processed/final.csv", 
-      train=args.train_plstream)
-  finished('Checklist PLStream', timer() - s)
+  if args.train_plstream:
+    s = working_on('Training PLStream')
+    plstream(PYTHON_PATH,
+        data_path="data/processed/final.csv", 
+        train=args.train_plstream)
+    finished('Checklist PLStream', timer() - s)
 
   # reproduce checklist results
   if args.reproduce_checklist:
@@ -86,11 +65,14 @@ def main():
       sys.stdout = open(f"results/checklist_summaries/{model}", "wt")
       print(f"Summary of {model.upper()}")
 
+      print(f"{PRED_PATH}/{model}")
       suite.run_from_file(f"{PRED_PATH}/{model}", overwrite=True)
       suite.summary()
       sys.stdout = sys.__stdout__
 
     finished('Reproduce Checklist Results', timer() - s)
+
+  finished('Entire Pipeline done', timer() - total)
 
 if __name__ == "__main__":
   main()
