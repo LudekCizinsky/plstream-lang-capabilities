@@ -101,6 +101,15 @@ Now, the `main.py` script can be run. The main
 script uses `argparse` to control what actions
 should be performed when running the script.
 
+If this is the first time running this project,
+activate all flags:
+
+```bash
+python main.py -F -T -R
+```
+
+This is, what the flags are doing:
+
 ```
 Control Runflow of main.py
 

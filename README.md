@@ -1,9 +1,12 @@
+# David vs Goliath: Can PLStream surprise?
+## Comparative study of language capabilities between `PLStream` and supervised state-of-the-art models using `CheckList`
+
 ## About 
 
-This repository stores the source code for the
-*Second Year Project* (Introduction to Natural
-Language Processing and Deep Learning) at the 
-IT University of Copenhagen. 
+This repository stores the source code for final
+project in the course *Second Year Project*
+(Introduction to Natural Language Processing and
+Deep Learning) at the IT University of Copenhagen. 
 
 Within the project we put
 [PLStream](https://arxiv.org/pdf/2203.12368v1.pdf)
@@ -30,10 +33,7 @@ the below steps to set-up the project with the
 correct python versions and dependencies in the
 right versions. 
 
-*Feel free to use your preferred package manager*
-(`conda`/ `venv`/ `pyenv`)
-
-### `venv`: Create Virtual Environment 
+### Create Virtual Environment in `venv`
 
 First, navigate to the folder where you want to
 store your virtual environment. (usually one has
@@ -80,7 +80,7 @@ pip install -r requirements.txt
 
 You are all set!
 
-### Create Virtual Environment (`conda`)
+### Create Virtual Environment in `conda`
 
 You can create a virtual environment within in
 `conda` (this assumes you have installed either
@@ -113,7 +113,9 @@ in it.
 Lastly, install the requirements from
 `requirements.txt`
 
-`pip install -r requirements.txt`
+```bash
+pip install -r requirements.txt
+```
 
 You are all set!
 
