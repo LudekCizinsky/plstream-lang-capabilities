@@ -20,8 +20,8 @@ import checklist
 from checklist.test_suite import TestSuite
 
 # global envs
-SUITE_PATH = 'sentiment_suite.pkl'
-PRED_PATH = 'predictions'
+SUITE_PATH = 'checklist_testsuite/sentiment_suite.pkl'
+PRED_PATH = 'results/checklist_predictions'
 PYTHON_PATH = subprocess.check_output(
     "which python3", shell=True).strip().decode('utf-8')
 
@@ -34,7 +34,7 @@ parser.add_argument(
     '--format-plstream-train',
     action='store_true',
       help='Format PLStream Training Data and\
-      write to data/final.csv')
+      write to data/processed/final.csv')
 
 parser.add_argument(
     '-T',
@@ -58,10 +58,10 @@ def main():
     s = working_on('Format PLStream Training Data')
 
     # preprocess testing data into format of
-    shutil.copyfile("data/train.csv", "data/final.csv")
+    shutil.copyfile("data/raw/train.csv", "data/processed/final.csv")
 
-    with open("data/final.csv", "a") as final:
-      with open("data/checklist-tests.txt", "r") as tests:
+    with open("data/processed/final.csv", "a") as final:
+      with open("data/raw/checklist-tests.txt", "r") as tests:
         for test in tests:
           test = test.strip().replace('"', '')
           t = f'0,"{test}"\n'
@@ -70,13 +70,10 @@ def main():
     finished('Format PLStream Training Data', timer() - s)
 
   # train plstream on this data
-  s = working_on('Checklist PLStream')
   plstream(PYTHON_PATH,
-      data_path="data/final.csv", 
+      data_path="data/processed/final.csv", 
       train=args.train_plstream)
   finished('Checklist PLStream', timer() - s)
-
-  finished('Entire Pipeline', timer() - total)
 
   # reproduce checklist results
   if args.reproduce_checklist:
@@ -86,7 +83,7 @@ def main():
     models = os.listdir(PRED_PATH)
 
     for model in models:
-      sys.stdout = open(f"summaries/{model}", "wt")
+      sys.stdout = open(f"results/checklist_summaries/{model}", "wt")
       print(f"Summary of {model.upper()}")
 
       suite.run_from_file(f"{PRED_PATH}/{model}", overwrite=True)
@@ -97,3 +94,4 @@ def main():
 
 if __name__ == "__main__":
   main()
+

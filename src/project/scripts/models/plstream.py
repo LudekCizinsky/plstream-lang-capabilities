@@ -1,38 +1,46 @@
+# built in modules
 import random
 import copy
 import re
-import numpy as np
+import pickle
+import logging
 import sys
-import pandas as pd
 import glob
 import os
 from pathlib import Path
-from scipy.special import softmax
-from scipy.spatial import distance
-from pyflink.datastream.connectors import StreamingFileSink
-from pyflink.common.serialization import Encoder
 from time import time
+from timeit import default_timer as timer
 
-np.warnings.filterwarnings('ignore', category=np.VisibleDeprecationWarning)
+# custom scripts
+from scripts.utils import output, working_on, finished
 
+# standard exernal libraries
+import numpy as np
 from numpy import dot
 from numpy.linalg import norm
+import pandas as pd
+from scipy.special import softmax
+from scipy.spatial import distance
+
+# gensim
 from gensim.models import Word2Vec
 
-import redis
-import pickle
-import logging
-
+# nltk
 import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from sklearn.metrics import accuracy_score
 
+# apache flink
 from pyflink.datastream.functions import RuntimeContext, MapFunction
 from pyflink.common.typeinfo import Types
 from pyflink.datastream import StreamExecutionEnvironment
 from pyflink.datastream import CheckpointingMode
+from pyflink.datastream.connectors import StreamingFileSink
+from pyflink.common.serialization import Encoder
 
+# redis
+import redis
 
 
 class for_output(MapFunction):
@@ -69,12 +77,30 @@ class unsupervised_OSA(MapFunction):
     # similarity-based classification preparation
     self.true_ref_neg = []
     self.true_ref_pos = []
-    self.ref_pos = ['love', 'best', 'beautiful', 'great', 'cool', 'awesome', 'wonderful', 'brilliant', 'excellent',
-            'fantastic']
-    self.ref_neg = ['bad', 'worst', 'stupid', 'disappointing', 'terrible', 'rubbish', 'boring', 'awful',
-            'unwatchable', 'awkward']
-    # self.ref_pos = [self.sno.stem(x) for x in self.ref_pos]
-    # self.ref_neg = [self.sno.stem(x) for x in self.ref_neg]
+    self.ref_pos = [
+        'love',
+        'best',
+        'beautiful',
+        'great',
+        'cool',
+        'awesome',
+        'wonderful',
+        'brilliant',
+        'excellent',
+        'fantastic'
+    ]
+    self.ref_neg = [
+        'bad',
+        'worst',
+        'stupid',
+        'disappointing',
+        'terrible',
+        'rubbish',
+        'boring',
+        'awful',
+        'unwatchable',
+        'awkward'
+    ]
 
     # temporal trend detection
     self.pos_coefficient = 0.5
@@ -92,14 +118,14 @@ class unsupervised_OSA(MapFunction):
     self.redis_param = redis.StrictRedis(host='localhost', port=6379, db=0)
 
     # load initial model
-    self.initial_model = Word2Vec.load('PLS_c10.model')
+    self.initial_model = Word2Vec.load('data/initial_w2vec/PLS_c10.model')
     self.vocabulary = list(self.initial_model.wv.index_to_key)
 
     # save model to redis
     self.save_model(self.initial_model)
 
   def save_model(self, model):
-    print("Saving Model to Redis")
+    
     self.redis_param = redis.StrictRedis(host='localhost', port=6379, db=0)
     try:
       self.redis_param.set(f'osamodel_{TRAINING_SIZE}', pickle.dumps(model, protocol=pickle.HIGHEST_PROTOCOL))
@@ -295,7 +321,6 @@ class unsupervised_OSA(MapFunction):
 
     # incremental learning
     call_model.build_vocab(new_sentences, update=True)  # 1) update vocabulary
-    print(len(call_model.wv.key_to_index))
     call_model.train(new_sentences,  # 2) incremental training
              total_examples=call_model.corpus_count,
              epochs=call_model.epochs)
@@ -359,7 +384,7 @@ class unsupervised_OSA(MapFunction):
     sentence = np.zeros(20)
     counter = 0
     cos_sim_bad, cos_sim_good = 0, 0
-    # print(tweet)
+    
     for word in tweet:
       try:
         sentence += model.wv[word]  # np.array(list(model.wv[words]) + new_feature)
@@ -368,9 +393,6 @@ class unsupervised_OSA(MapFunction):
         pass
     if counter != 0:
       sentence_vec = sentence / counter
-      #print('got sentence vec')
-    # else:
-      #print('couldnt get sentence')
 
     k_cur = min(len(self.true_ref_neg), len(self.true_ref_pos))
     for neg_word in self.true_ref_neg[:k_cur]:
@@ -385,18 +407,16 @@ class unsupervised_OSA(MapFunction):
         cos_sim_good += cos_sim
       except: pass
 
-    #print(cos_sim_bad, cos_sim_good)
+    
     if cos_sim_bad == 0 and cos_sim_good == 0:
       # model cannot evaluate document because of
-      # missing vocab
-      print('getting at random')
+      # missing vocab 
       cos_sim_bad, cos_sim_good = np.random.uniform(0, 1, 2)
       s = cos_sim_bad + cos_sim_good
     else:
       s = cos_sim_bad + cos_sim_good
 
     cos_prob_bad, cos_prob_good = softmax([cos_sim_bad, cos_sim_good])
-    print(cos_prob_bad, cos_prob_good)
 
     if cos_prob_bad > cos_prob_good:
       # print(0, cos_sim_bad / s, cos_sim_good / s)
@@ -408,11 +428,11 @@ class unsupervised_OSA(MapFunction):
 
 
 def plstream(python_path, data_path, train=True):
-  print('-- Getting stream ready')
-  # parallelism = 4 # didnt get this to work yet
+
+  s = working_on('Getting stream ready')
 
   # load train data
-  df = pd.read_csv("./data/train.csv", index_col=False)
+  df = pd.read_csv("data/raw/train.csv", index_col=False)
 
   # store reviews and label in lists
   true_label = list(df.label)
@@ -424,7 +444,7 @@ def plstream(python_path, data_path, train=True):
     data_stream.append( (yelp_review[i], int(true_label[i])))
 
   # load checklist test in to list of tests
-  with open("data/checklist-tests.txt", "r") as f:
+  with open("data/raw/checklist-tests.txt", "r") as f:
     checklist_tests = [line.strip() for line in f]
   
 
@@ -437,10 +457,11 @@ def plstream(python_path, data_path, train=True):
   dummies = ["<this is a dummy>" for _ in range(len(checklist_tests)%2000)]
   checklist_stream = [(test, 0) for test in checklist_tests + dummies]
 
-  print('> Done\n')
+  finished('Stream of data has been prepared.', timer() - s)
   
   if train:
-    print('-- Setting up the job')
+    s = working_on('Setting up pipeline')
+
     env = StreamExecutionEnvironment.get_execution_environment()
     env.set_python_executable(python_path)
     env.set_parallelism(1)
@@ -451,16 +472,18 @@ def plstream(python_path, data_path, train=True):
     s2 = s1.key_by(lambda x: x[0], key_type=Types.STRING())
     s3 = s2.reduce(lambda x, y: (x[0], unsupervised_OSA().model_merge(x, y)))
     s4 = s3.filter(lambda x: x[0] != 'model').map(for_output(), output_type=Types.STRING())
-    s5 = s4.add_sink(StreamingFileSink.for_row_format('./output', Encoder.simple_string_encoder()).build())
-    print('> Done\n')
+    s5 = s4.add_sink(StreamingFileSink.for_row_format('./results/plstream_output', Encoder.simple_string_encoder()).build())
 
-    print('-- Running the job on local cluster')
+    finished('Streaming pipeline has been setup.', timer() - s)
+
+    s = working_on('Started execution of stream pipeline')
     env.execute("osa_job")
+    finished('Execution of streaming pipeline done - no more incoming data.', timer() - s)
 
-  print('-- Formatting Output')
+  s = working_on('Formatting predictions to the suitable format')
 
   # getting most recent output file
-  output_files = glob.glob('./output/*/.*', recursive=True)
+  output_files = glob.glob('./results/plstream_output/*/.*', recursive=True)
   recent_files = sorted(output_files, key=os.path.getctime, reverse=True)
 
   cols = ["text", "prediction", "prob_neg", "prob_neu", "prob_pos"]
@@ -482,4 +505,5 @@ def plstream(python_path, data_path, train=True):
       index=False, 
       header=False)
 
-  print('Done!')
+  finished('Formatting and saving of predictions finished.', timer() - s)
+
