@@ -1,3 +1,4 @@
+![header image](assets/header.png)
 ## David vs Goliath: Can PLStream surprise?
 ### Comparative study of language capabilities between `PLStream` and supervised state-of-the-art models using `CheckList`
 
@@ -20,7 +21,9 @@ models. Our analysis reveals shortcomings in
 PLStream’s overall ability to understand and learn
 from language - especially regarding not
 understanding contextual information and learning
-biases from training data
+biases from training data.
+
+See the project's presentation [here](https://docs.google.com/presentation/d/1EoGh5q3fDGEuKiBRmKeIzyC8v7CfyOKn6N76kvDdf2E/edit?usp=sharing).
 
 ## Reproducing Results
 
