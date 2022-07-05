@@ -1,4 +1,4 @@
-![header image](assets/header.png)
+![header image](assets/header_image.png)
 
 ## About 
 
